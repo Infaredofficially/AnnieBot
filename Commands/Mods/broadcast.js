@@ -8,16 +8,7 @@ module.exports = {
   start: async (
     Miku,
     m,
-    {
-      text,
-      prefix,
-      isBotAdmin,
-      participants,
-      pushName,
-      isCreator,
-      args,
-      modStatus,
-    }
+    { text, prefix, isBotAdmin, participants, pushName, isCreator, args, modStatus }
   ) => {
     if (modStatus == "false" && !isCreator)
       return Miku.sendMessage(
@@ -43,21 +34,16 @@ module.exports = {
       .map((entry) => entry[1]);
     let anu = group.map((v) => v.id);
     m.reply(`*Broadcasting message to ${anu.length} groups...*`);
-    let count = 0;
+    
     for (let i of anu) {
       let txt = `*「  🧣 ${botName} Broadcast 🧣  」*\n\n*🧩 Message:* ${broadcastText}\n\n\n*🔰 Regards ~ ${pushName}*`;
 
-      const intervalId = setInterval(() => {
-        Miku.sendMessage(i, {
-          video: { url: botVideo },
-          gifPlayback: true,
-          caption: txt,
-          mentions: participants.map((a) => a.id),
-        });
-        if (++count === anu.length) {
-          clearInterval(intervalId);
-        }
-      }, 1600);
+      Miku.sendMessage(i, {
+        video: { url: botVideo },
+        gifPlayback: true,
+        caption: txt,
+        mentions: participants.map((a) => a.id),
+      });
     }
 
     m.reply(`*Broadcasting message to ${anu.length} groups completed !*`);
