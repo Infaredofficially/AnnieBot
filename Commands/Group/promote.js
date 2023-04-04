@@ -11,18 +11,14 @@ module.exports = {
     { text, prefix, isBotAdmin, isAdmin, mentionByTag, pushName,groupAdmin }
   ) => {
     if (!isAdmin) {
-      return Miku.sendMessage(
-        m.from,
-        { text: `${mess.useradmin}` },
-        { quoted: m }
-      );
+      return m.reply(mess.useradmin);
     }
+    if (!isBotAdmin) {
+      return m.reply(mess.botadmin);
+    }
+
     if (!text && !m.quoted) {
-      return Miku.sendMessage(
-        m.from,
-        { text: `Please tag a user to *Promote*!` },
-        { quoted: m }
-      );
+      return m.reply(`Please tag a user to *Promote*!`);
     } else if (m.quoted) {
       var mentionedUser = m.quoted.sender;
     } else {

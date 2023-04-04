@@ -1,4 +1,4 @@
-const { lyrics, lyricsv2 } = require("@bochilteam/scraper");
+const axios = require("axios");
 
 module.exports = {
   name: "lyrics",
@@ -14,19 +14,19 @@ module.exports = {
         { text: `Please provide a Search Term !` },
         { quoted: m }
       );
-    var LyricssearchTerm = args.join(" ");
+    var searchQuery = args.join(" ");
 
-    const resultlyrics = await lyrics(LyricssearchTerm).catch(
-      async (_) => await lyricsv2(LyricssearchTerm)
-    );
+    const result = await axios.get("https://fantox001-scrappy-api.vercel.app/lyrics?search=" + searchQuery)
+    const lyrics = result.data.lyrics
+    const thumbnail = result.data.thumbnail
 
-    let resText = `  *『  ⚡️ Lyrics Search Engine ⚡️  』*\n\n\n_Search Term:_ *${LyricssearchTerm}*\n\n\n*📍 Lyrics:* \n\n${resultlyrics.lyrics}\n\n`;
+    let resText = `  *『  ⚡️ Lyrics Search Engine ⚡️  』*\n\n\n_Search Term:_ *${searchQuery}*\n\n\n*📍 Lyrics:* \n\n${lyrics}\n\n\n_*Powered by:*_ *Scrappy API - by FantoX*\n\n_*Url:*_ https://github.com/FantoX001/Scrappy-API \n`;
 
     await Miku.sendMessage(
       m.from,
       {
         image: {
-          url: botImage3,
+          url: thumbnail,
         },
         caption: resText,
       },

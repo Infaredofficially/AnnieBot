@@ -2,7 +2,7 @@ const gis = require("g-i-s");
 
 module.exports = {
   name: "gimage",
-  alias: ["imagesearch", "googleimage", "googleimagesearch", "gig", "gis"],
+  alias: ["imagesearch", "googleimage", "googleimagesearch", "gig", "gis","image"],
   desc: "To get google image search result",
   category: "Search",
   usage: `gig <search term>`,
@@ -20,15 +20,16 @@ module.exports = {
       n = result;
       images = n[Math.floor(Math.random() * n.length)].url;
 
-      let resText = `   *『  Image Search Engine  』*\n\n\n_🎀 Search Term:_ *${ImagesearchTerm}*\n`;
+      let resText = `\n_🎀 Image Search Term:_ *${ImagesearchTerm}*\n\n_🧩 Powered by_ *${botName}*\n`;
 
+      /*
       let buttons = [
         {
           buttonId: `${prefix}gimage ${ImagesearchTerm}`,
           buttonText: { displayText: ">>" },
           type: 1,
         },
-      ];
+      ];*/
       await Miku.sendMessage(
         m.from,
         {
@@ -36,9 +37,9 @@ module.exports = {
             url: images,
           },
           caption: resText,
-          footer: `*${botName}*`,
-          buttons: buttons,
-          headerType: 4,
+          //footer: `*${botName}*`,
+          //buttons: buttons,
+          //headerType: 4,
         },
         { quoted: m }
       );

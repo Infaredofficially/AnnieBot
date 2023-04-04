@@ -38,14 +38,12 @@ module.exports = {
         { text: `Please tag a user to *Ban*!` },
         { quoted: m }
       );
-    }
-
-    if (m.quoted) {
+    }else if (m.quoted) {
       var mentionedUser = m.quoted.sender;
     } else {
       var mentionedUser = mentionByTag[0];
     }
-    //var mentionedUser = mentionByTag;
+    
     let GroupName = metadata.subject;
     let banreason = args.join(" ");
 

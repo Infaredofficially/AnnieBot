@@ -12,23 +12,11 @@ module.exports = {
       .then((response) => {
         const tet = `*『  Random Facts  』* \n\n${response.data.fact}`;
 
-        let buttons = [
-          {
-            buttonId: `${prefix}fact`,
-            buttonText: { displayText: "Next Fact" },
-            type: 1,
-          },
-        ];
-
-        let buttonMessage = {
-          image: { url: pic },
-          caption: tet + "\n",
-          footer: `*${botName}*`,
-          buttons: buttons,
-          headerType: 4,
-        };
-
-        Miku.sendMessage(m.from, buttonMessage, { quoted: m });
+        Miku.sendMessage(
+          m.from,
+          { image: { url: pic }, caption: tet + "\n" },
+          { quoted: m }
+        );
       })
       .catch((err) => {
         m.reply(`An error occurred.`);

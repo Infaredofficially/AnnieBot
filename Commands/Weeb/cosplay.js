@@ -9,19 +9,19 @@ module.exports = {
   react: "🍁",
   start: async (Miku, m, { prefix }) => {
     var cosplayImage = await getBuffer(`https://fantox-cosplay-api.onrender.com/`);
-    var cosplayButton = [
+    /*var cosplayButton = [
       {
         buttonId: `${prefix}cosplay`,
         buttonText: { displayText: `>>` },
         type: 1,
       },
-    ];
+    ];*/
     let bmffg = {
       image: cosplayImage,
-      caption: `Cosplay API by *Team Atlas*\n\n*API link:* https://shubhapratimbiswas.tech\n`,
-      footer: `*${botName}*`,
+      caption: `Cosplay API by *Team Atlas*\n\n*API link:* https://fantox-cosplay-api.onrender.com/\n`,
+      /*footer: `*${botName}*`,
       buttons: cosplayButton,
-      headerType: 4,
+      headerType: 4,*/
     };
     await Miku.sendMessage(m.from, bmffg, { quoted: m }).catch((err) => {
       return "Error!";

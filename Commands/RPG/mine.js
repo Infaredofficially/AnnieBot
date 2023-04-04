@@ -19,8 +19,26 @@ module.exports = {
     return Miku.sendMessage(m.from, { text:` 😕 You don't have an inventory. Use ${prefix}reg-inv to register.` }, { quoted: m });
   }
   console.log("User inventory retrieved successfully.");
-  let inventory = user.inventory;
+  //let inventory = user.inventory;
   
+  let txt =`１． 🔖 ＷＯＯＤＥＮＡＸＥ
+
+_*Usage:*_ ${prefix}hunt2 woodenaxe
+
+２． 🔖 ＩＲＯＮＰＩＣＫＡＸＥ
+
+_*Usage:*_ ${prefix}hunt2 ironpickaxe
+
+３． 🔖 ＳＴＯＮＥＰＩＣＫＡＸＥ
+
+_*Usage:*_ ${prefix}hunt2 stonepickaxe
+
+４． 🔖 ＤＩＡＭＯＮＤＰＩＣＫＡＸＥ
+
+_*Usage:*_ ${prefix}hunt2 diamondpickaxe
+  `
+
+  /*
   const sections = [{
     "title": "🔖１． ＷＯＯＤＥＮＡＸＥ",
     "rows": [
@@ -66,16 +84,17 @@ let con = `
 Hello, 
 1 | Please select an axe you want to use for mining.
 `
+*/
 let ments = [m.sender]
 
 const listMessage = {
-footer: `*${botName}*`,
-text: 'Powered By TEAM ATLAS',
-title: con,
-buttonText: `CLICK HERE ⎙`,
+//footer: `*${botName}*`,
+text: txt,
+//title: con,
+//buttonText: `CLICK HERE ⎙`,
 mentions: ments,
-headerType: 4,
-sections
+//headerType: 4,
+//sections
 }
 await Miku.sendMessage(m.from, listMessage,{ quoted:m })
 

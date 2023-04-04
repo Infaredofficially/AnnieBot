@@ -36,15 +36,19 @@ module.exports = {
           ];
 
           let buttonMessage = {
-            image: { url: botImage1 },
+            
+
+          };
+          Miku.sendMessage(m.from, {image: { url: botImage1 },
             caption: `
             *『 Tiktok Downloader 』*
       
-*🧩 Video Url :* _${args[0]}_\n\n`,
-            footer: `*${botName}*`,
-            buttons: buttons,
-            headerType: 4,
-          };
-          Miku.sendMessage(m.from, buttonMessage, { quoted: m });
+*🧩 Video Url :* _${args[0]}_\n\n
+
+*📌 Select the format*
+
+*${prefix}tiktokmp3 <link>*
+*${prefix}tiktokmp4 <link>*
+*${prefix}tiktokdoc <link>*`,}, { quoted: m });
         },
     }

@@ -12,14 +12,12 @@ module.exports = {
       m,
       { args, isBotAdmin, isAdmin, isCreator, reply,prefix,pushName }
     ) => {
-        if (!isAdmin && !isBotAdmin)
-        return Miku.sendMessage(
-          m.from,
-          {
-            text: `Bot and *${pushName}* both must be admin in order to use this command !`,
-          },
-          { quoted: m }
-        );
+        if (!isAdmin) {
+          return m.reply(mess.useradmin);
+        }
+        if (!isBotAdmin) {
+          return m.reply(mess.botadmin);
+        }
   
       let checkdata = await mk.findOne({ id: m.from });
       var groupe = await Miku.groupMetadata(m.from);
@@ -81,26 +79,7 @@ module.exports = {
           );
         }
       } else {
-        let buttonsntilink = [
-          {
-            buttonId: `${prefix}antilinkgc on`,
-            buttonText: { displayText: "On" },
-            type: 1,
-          },
-          {
-            buttonId: `${prefix}antilinkgc off`,
-            buttonText: { displayText: "Off" },
-            type: 1,
-          },
-        ];
-        let bmffg = {
-          image: {url : botImage6} ,
-          caption: `\n*「  Group Antilink configuration  」*\n\nPlease click the button below\n*On / Off*\n\nNote: This will *delete* all links from groups and *remove* someone if they send any other *WhatsApp Group's Link*.`,
-          footer: `*${botName}*`,
-          buttons: buttonsntilink,
-          headerType: 4,
-        };
-        await Miku.sendMessage(m.from, bmffg, { quoted: m });
+        await Miku.sendMessage(m.from, {image: {url : botImage6} ,caption: `\n*「  Group Antilink configuration  」*\n\nNote: This will *delete* all links from groups and *remove* someone if they send any other *WhatsApp Group's Link*.\n\n*_Usage:_*\n\n*${prefix}antilink on*\n*${prefix}antilink off*\n\n*Current Status:* ${checkdata.antilink == "true" ? "On" : "Off"}`,}, { quoted: m });
     }
   },
 };

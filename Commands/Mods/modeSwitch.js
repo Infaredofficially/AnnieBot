@@ -136,31 +136,8 @@ module.exports = {
         );
       }
     } else {
-      let buttonsntilink = [
-        {
-          buttonId: `${prefix}mode public`,
-          buttonText: { displayText: "Public Mode" },
-          type: 1,
-        },
-        {
-          buttonId: `${prefix}mode private`,
-          buttonText: { displayText: "Private Mode" },
-          type: 1,
-        },
-        {
-          buttonId: `${prefix}mode self`,
-          buttonText: { displayText: "Self Mode" },
-          type: 1,
-        },
-      ];
-      let bmffg = {
-        image: { url: botImage6 },
-        caption: `\n*「  Mode configuration  」*\n\n*Self - Only Hoster*\n*Private - Only Mods*\n*Public - Everyone*\n`,
-        footer: `*${botName}*`,
-        buttons: buttonsntilink,
-        headerType: 4,
-      };
-      await Miku.sendMessage(m.from, bmffg, { quoted: m });
+
+      await Miku.sendMessage(m.from, {image: { url: botImage6 },caption: `\n*「  Mode configuration  」*\n\n\n*Self* - Only Hoster can use\n*Private* - Only Mods can use\n*Public* - Everyone can use\n\n_*Usage:*_\n\n${prefix}mode self\n${prefix}mode private\n${prefix}mode public\n`,}, { quoted: m });
     }
   },
 };

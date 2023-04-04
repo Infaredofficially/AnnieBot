@@ -1,9 +1,4 @@
-const {
-  instagramdl,
-  instagramdlv4,
-  instagramdlv2,
-  instagramdlv3,
-} = require("@bochilteam/scraper");
+const axios = require("axios");
 
 module.exports = {
   name: "igdl2",
@@ -25,17 +20,13 @@ module.exports = {
         { text: `Please provide a valid Instagram Video link !` },
         { quoted: m }
       );
-    const results = await instagramdl(args[0])
-      .catch(async (_) => await instagramdlv2(args[0]))
-      .catch(async (_) => await instagramdlv3(args[0]))
-      .catch(async (_) => await instagramdlv4(args[0]));
+    
 
-    for (const { url } of results) {
-      await Miku.sendMessage(
-        m.from,
-        { video: { url: url }, caption: `Downloaded by: *${botName}*` },
-        { quoted: m }
-      );
-    }
+      var queryURL = args.join(" ");
+      m.reply("*Please wait, I'm downloading your video...*")
+      let res = await axios.get("https://fantox001-scrappy-api.vercel.app/instadl?url=" + queryURL)
+      const scrappedURL = res.data.videoUrl
+      
+      return Miku.sendMessage(m.from, { video: { url: scrappedURL }, caption: `Downloaded by: *${botName}* \n\n_*Powered by:*_ *Scrappy API - by FantoX*\n\n_*Url:*_ https://github.com/FantoX001/Scrappy-API \n`},{ quoted: m } );
   },
 };

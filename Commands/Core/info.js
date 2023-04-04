@@ -11,9 +11,6 @@ module.exports = {
     react: '📊',
     start: async (Miku, m, { text, prefix, mentionByTag, pushName, isCreator, participants, modStatus, commands, store, from }) => {
       try {
-      if (!isCreator && modStatus === 'false') {
-        return Miku.sendMessage(m.from, { text: 'Sorry, only my *Owner* and *Mods* can use this command !' }, { quoted: m });
-      }
 
       const [modlist, FetchGC, totalUsers, sessionCount] = await Promise.all([
         mku.find({ addedMods: 'true' }),
@@ -37,12 +34,11 @@ module.exports = {
   },
 };
 
-function generateStatsText(users, bots, groups, mods, commands, sessions, uptime) {
+function generateStatsText(users, groups, mods, commands, sessions, uptime) {
   return `
 *━━━❰ STATISTICS ❱━━━*
 
 👥Users: ${users}
-🚀Bots: ${bots}
 🌑Groups: ${groups}
 🥇Mods: ${mods}
 📪Commands: ${commands}

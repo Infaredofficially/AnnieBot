@@ -73,24 +73,10 @@ module.exports = {
         );
       }
     } else {
-      let buttonsntilink = [
-        {
-          buttonId: `${prefix}pmchatbot on`,
-          buttonText: { displayText: "On" },
-          type: 1,
-        },
-        {
-          buttonId: `${prefix}pmchatbot off`,
-          buttonText: { displayText: "Off" },
-          type: 1,
-        },
-      ];
       let bmffg = {
         image: { url: botImage6 },
-        caption: `\n *「  PM Chatbot configuration  」*\n\nPlease click the button below\n*On / Off*\n`,
-        footer: `*${botName}*`,
-        buttons: buttonsntilink,
-        headerType: 4,
+        caption: `\n *「  PM Chatbot configuration  」*\n\n\nNote: This will enable chatbot in bot's PM. Bot will reply to all message in PM.\n\n*_Usage:_*\n\n*${prefix}pmchatbot on*\n*${prefix}pmchatbot off*\n\n*Current Status:* ${checkdata.PMchatBot == "true" ? "On" : "Off"}`,
+
       };
       await Miku.sendMessage(m.from, bmffg, { quoted: m });
     }

@@ -19,21 +19,21 @@ module.exports = {
       .pinterest(PinsearchTerm)
       .then(async (res) => {
         imgnyee = res[Math.floor(Math.random() * res.length)];
-        let buttons = [
+        /*let buttons = [
           {
             buttonId: `${prefix}pinterest ${args.join(" ")}`,
             buttonText: { displayText: ">>" },
             type: 1,
           },
-        ];
+        ];*/
 
-        let txt = `     *『  Pinterest Search Engine  』*\n\n_🎀 Search Term:_ *${PinsearchTerm}*\n`;
+        let txt = `\n_🎀 Pinterest Search Term:_ *${PinsearchTerm}*\n\n_🧩 Powered by_ *${botName}*\n`;
         let buttonMessage = {
           image: { url: imgnyee },
           caption: txt,
-          footer: `*${botName}*`,
-          buttons: buttons,
-          headerType: 4,
+          //footer: `*${botName}*`,
+          //buttons: buttons,
+          //headerType: 4,
         };
         Miku.sendMessage(m.from, buttonMessage, { quoted: m });
       })

@@ -86,7 +86,7 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
       ? participants.filter((v) => v.admin !== null).map((v) => v.id)
       : [];
     const botNumber = await Miku.decodeJid(Miku.user.id);
-    const isBotAdmin = m.isGroup ? groupAdmin.includes(Miku.user?.jid) : false;
+    const isBotAdmin = isGroup ? groupAdmin.includes(botNumber) : false;
     const isAdmin = isGroup ? groupAdmin.includes(sender) : false;
     const isCreator = [botNumber, ...global.owner]
       .map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net")
@@ -204,7 +204,12 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
         antilink: "false",
       });
     }
+    
     if (checkdata) {
+      if(checkdata.antilink == "true" && !isBotAdmin) {
+        await mk.updateOne({ id: m.from }, { antilink: "false" });
+        Miku.sendMessage(m.from, {text:`Antilink has been *disabled* because I am not an admin anymore.`});
+      }
       let mongoschema = checkdata.antilink || "false";
       if (m.isGroup && mongoschema == "true") {
         linkgce = await Miku.groupInviteCode(from);
@@ -421,33 +426,21 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
 
     const flags = args.filter((arg) => arg.startsWith("--"));
     if (body.startsWith(prefix) && !icmd) {
-      let mikutext = `No such command programmed *${pushname}* senpai! Type *${prefix}help* or press the button below to get my full command list!\n`;
-
-      let Button = [
-        {
-          buttonId: `${prefix}help`,
-          buttonText: {
-            displayText: `${prefix}help`,
-          },
-          type: 1,
+      let mikutext = `No such command programmed *${pushname}* senpai! Type *${prefix}help* to get my full command list!\n`;
+      const reactmxv = {
+        react: {
+          text: '❌',
+          key: m.key,
         },
-      ];
-      let bmffg = {
-        image: {
-          url: botImage1,
-        },
-        caption: mikutext,
-        footer: `*${botName}*`,
-        buttons: Button,
-        headerType: 4,
       };
-      Miku.sendMessage(m.from, bmffg, {
+      await Miku.sendMessage(m.from, reactmxv);
+
+      Miku.sendMessage(m.from, {image: {url: botImage1,},caption: mikutext,}, {
         quoted: m,
       });
     }
 
     if (m.message) {
-      //  addBalance(m.sender, randomNomor(574), balance)
       console.log(
         chalk.black(chalk.bgWhite("[ MESSAGE ]")),
         chalk.black(chalk.bgGreen(new Date())),
@@ -480,20 +473,9 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
             .replace(/%command/gi, cmd.name)
             .replace(/%text/gi, text)}`
         );
-      var buttonss = [
-        {
-          buttonId: `${prefix}help`,
-          buttonText: {
-            displayText: `${prefix}help`,
-          },
-          type: 1,
-        },
-      ];
+
       let buttonmess = {
         text: `*Command Info*\n\n${data.join("\n")}`,
-        footer: `*${botName}*`,
-        buttons: buttonss,
-        headerType: 1,
       };
       let reactionMess = {
         react: {
@@ -503,7 +485,6 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
       };
       await Miku.sendMessage(m.from, reactionMess).then(() => {
         return Miku.sendMessage(m.from, buttonmess, {
-          react: "🍁",
           quoted: m,
         });
       });

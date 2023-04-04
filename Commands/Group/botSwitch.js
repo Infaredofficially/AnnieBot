@@ -95,26 +95,9 @@ module.exports = {
         );
       }
     } else {
-      let buttonsntilink = [
-        {
-          buttonId: `${prefix}cmd on`,
-          buttonText: { displayText: "On" },
-          type: 1,
-        },
-        {
-          buttonId: `${prefix}cmd off`,
-          buttonText: { displayText: "Off" },
-          type: 1,
-        },
-      ];
-      let bmffg = {
-        image: { url: botImage2 },
-        caption: `\n *「  Admin Only Mode  」*\n\nPlease click the button below\n\n*On / Off*\n\nNote: This feature will only make bot useable for admins only.`,
-        footer: `*${botName}*`,
-        buttons: buttonsntilink,
-        headerType: 4,
-      };
-      await Miku.sendMessage(m.from, bmffg, { quoted: m });
+    
+      await Miku.sendMessage(m.from, {image: { url: botImage2 },
+        caption: `\n *「  Admin Only Mode  」*\n\nNote: This feature will only make bot useable for admins only.\n\n*_Usage:_*\n\n*${prefix}bot on*\n*${prefix}bot off*\n\n*Current Status:* ${checkdata.botSwitch == "true" ? "On" : "Off"}`,}, { quoted: m });
     }
   },
 };

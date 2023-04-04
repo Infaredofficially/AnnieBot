@@ -9,19 +9,19 @@ module.exports = {
   start: async (Miku, m, { pushName, prefix }) => {
     let oppai = await axios.get("https://nekosenpai-apis.onrender.com/oppai");
 
-    let Button = [
+    /*let Button = [
       {
         buttonId: `${prefix}oppai`,
         buttonText: { displayText: `>>` },
         type: 1,
       },
-    ];
+    ];*/
     let oppais = {
       image: { url: oppai.data.url },
       caption: `Do you love Oppai too ${pushName} Senpai... ?`,
-      footer: `*${botName}*`,
+      /*footer: `*${botName}*`,
       buttons: Button,
-      headerType: 4,
+      headerType: 4,*/
     };
     await Miku.sendMessage(m.from, oppais, { quoted: m }).catch((err) => {
       return "Error!";

@@ -11,11 +11,13 @@ module.exports = {
 
       let ntext = `\n╭────ꕥ NSFW Menu ꕥ────╮
 ├
+├・ 💦 xᴠɪᴅᴇᴏꜱ <ᴀɴʏ ꜱᴇᴀʀᴄʜ ᴛᴇʀᴍ>
+├・ 💦 ʜᴇɴᴛᴀɪᴠɪᴅᴇᴏ
 ├・ 💦 ᴘᴜꜱꜱʏ, ꜱᴘʀᴇᴀᴅᴘᴜꜱꜱʏ,
 ├・ 💦 ɢᴇɴꜱʜɪɴ, ꜱQᴜɪʀᴛ,
 ├・ 💦 ɢʟᴀꜱꜱᴇꜱ, ꜱᴜɴɢʟᴀꜱꜱᴇꜱ,
 ├・ 💦 ꜱᴡɪᴍꜱᴜɪᴛ, ꜱᴄʜᴏᴏʟꜱᴡɪᴍꜱᴜɪᴛ,
-├・ 💦 ʜᴏʟᴏ ʟɪᴠᴇ, ᴀꜱꜱ,
+├・ 💦 ʜᴏʟᴏʟɪᴠᴇ, ᴀꜱꜱ,
 ├・ 💦 ᴜɴᴅᴇʀᴡᴇᴀʀ, ɴɪᴘᴘʟᴇꜱ,
 ├・ 💦 ᴜɴᴄᴇɴꜱᴏʀᴇᴅ, ɴɪᴘᴘʟᴇꜱ,
 ├・ 💦 ᴜɴᴄᴇɴꜱᴏʀᴇᴅ, ꜱᴇx,
@@ -66,7 +68,7 @@ module.exports = {
 ├
 ╰──────────────────╯\n\n
 
-🎀 Powered By: *FantoX APIs* 🎀\n\n*🧩 API link:* \nhttps://fantox-api.vercel.app\n`
+🎀 Powered By: *FantoX APIs* 🎀\n\n*🧩 API link:* \n❖ https://github.com/FantoX001/Scrappy-API\n❖ https://fantox-api.vercel.app\n`
 
 await Miku.sendMessage(m.from, {image: {url: botImage5}, caption: ntext}, { quoted: m })
     }

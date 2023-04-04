@@ -7,19 +7,9 @@ module.exports = {
   react: "🍁",
   start: async (Miku, m, { isAdmin, isBotAdmin, pushName }) => {
     if (!m.quoted)
-      return Miku.sendMessage(
-        m.from,
-        { text: `Please mention a message to delete !` },
-        { quoted: m }
-      );
-    if (!isAdmin && !isBotAdmin)
-      return Miku.sendMessage(
-        m.from,
-        {
-          text: `Bot and *${pushName}* both must be admin in order to use this command !`,
-        },
-        { quoted: m }
-      );
+      return m.reply(`Please mention a message to delete !`);
+
+    if (!isAdmin && !isBotAdmin) return m.reply(`Bot and *${pushName}* both must be admin in order to use this command !`);
     
     var { from, fromMe, id } = m.quoted;
 

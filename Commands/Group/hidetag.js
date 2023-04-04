@@ -11,7 +11,7 @@ module.exports = {
     { text, prefix, isAdmin, participants, args }
   ) => {
     if (!isAdmin)
-      return Miku.sendMessage(m.from, { text: mess.useradmin }, { quoted: m });
+      return m.reply(mess.useradmin);
 
       var message = "*『 Attention Here 』*";
 

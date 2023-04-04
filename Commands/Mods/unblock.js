@@ -20,7 +20,7 @@ module.exports = {
     if (!text && !m.quoted) {
       return Miku.sendMessage(
         m.from,
-        { text: `Please tag a user to *Block*!` },
+        { text: `Please tag a user to *Un-Block*!` },
         { quoted: m }
       );
     } else if (m.quoted) {

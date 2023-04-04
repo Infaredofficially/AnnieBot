@@ -13,13 +13,7 @@ module.exports = {
     { args, isBotAdmin, isAdmin, isCreator, reply, prefix, pushName }
   ) => {
     if (!isAdmin)
-      return Miku.sendMessage(
-        m.from,
-        {
-          text: `*${pushName}* must be *Admin* to turn ON/OFF *Welcome/Goodbye* mesages !`,
-        },
-        { quoted: m }
-      );
+      return m.reply(mess.useradmin)
 
     let checkdata = await mk.findOne({ id: m.from });
     var groupe = await Miku.groupMetadata(m.from);
@@ -92,26 +86,8 @@ module.exports = {
         );
       }
     } else {
-      let buttonsntilink = [
-        {
-          buttonId: `${prefix}welcome on`,
-          buttonText: { displayText: "On" },
-          type: 1,
-        },
-        {
-          buttonId: `${prefix}welcome off`,
-          buttonText: { displayText: "Off" },
-          type: 1,
-        },
-      ];
-      let bmffg = {
-        image: { url: botImage2 },
-        caption: `\n*「 Welcome Configuration 」*\n\nPlease click the button below\n`,
-        footer: `*${botName}*`,
-        buttons: buttonsntilink,
-        headerType: 4,
-      };
-      await Miku.sendMessage(m.from, bmffg, { quoted: m });
+      
+      await Miku.sendMessage(m.from, {image: { url: botImage2 },caption: `\n*「 Welcome Configuration 」*\n\nNote: *Welcome/Goodbye* messages will be sent when someone joins or leaves the group.\n\n*_Usage:_* \n\n${prefix}welcome on\n${prefix}welcome off\n\n*Current Status:* ${checkdata.switchWelcome == "true" ? "On" : "Off"}`,}, { quoted: m });
     }
   },
 };

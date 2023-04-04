@@ -16,11 +16,7 @@ module.exports = {
         );
       var googlesearchTerm = args.join(" ");
 
-        var googleSearch = await googleit({ query: googlesearchTerm }).then(
-            (response) => response
-            ).catch((error) => {
-            console.log(error);
-            });
+        var googleSearch = await googleit({ query: googlesearchTerm })
 
         let resText = `  *『  ⚡️ Google Search Engine ⚡️  』*\n\n\n_🔍 Search Term:_ *${googlesearchTerm}*\n\n\n`
 

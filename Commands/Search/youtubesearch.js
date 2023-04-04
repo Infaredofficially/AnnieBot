@@ -15,11 +15,20 @@ module.exports = {
         { quoted: m }
       );
     let search = await yts(text);
+    let thumbnail = search.all[0].thumbnail;
     let num = 1;
-    let sections = [];
+
+
+    var txt = `*🏮 YouTube Search Engine 🏮*\n\n_🧩 Search Term:_ *${args.join(" ")}*\n\n*📌 Total Results:* *${search.all.length}*\n`;
+
+    for(let i of search.all){
+      txt += `\n_Result:_ *${num++}*\n_🎀 Title:_ *${i.title}*\n_🔶 Duration:_ *${i.timestamp}*\n_🔷 Link:_ ${i.url}\n\n`
+    }
+
+    /*let sections = [];
     for (let i of search.all) {
       const list = {
-        title: `Reseult: ${num++}`,
+        title: `Result: ${num++}`,
         rows: [
           {
             title: `${i.title}`,
@@ -32,13 +41,11 @@ module.exports = {
     }
     var txt = `*🏮 YouTube Search Engine 🏮*\n\n_🧩 Search Term:_ *${args.join(
       " "
-    )}*\n\n*📌 Total Results:* *${search.all.length}*\n`;
+    )}*\n\n*📌 Total Results:* *${search.all.length}*\n`;*/
 
     let buttonMessage = {
-      text: txt,
-      footer: `*${botName}*`,
-      buttonText: "Choose Song",
-      sections,
+      image: { url: thumbnail },
+      caption: txt,
     };
 
     Miku.sendMessage(m.from, buttonMessage, { quoted: m });

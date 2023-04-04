@@ -4,7 +4,7 @@ module.exports = {
 
     name: "setcharacter", 
     alias: ["setchar","setbotcharater","changechar","changecharacter","botchar","botcharacter"], 
-    desc: "Ban a member", 
+    desc: "Set a Bot Character", 
     category: "core", 
     usage: "setchar 0/1/2/3/4/5/6/7", 
     react: "🎀", 

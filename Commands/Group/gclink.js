@@ -9,8 +9,8 @@ module.exports = {
   usage: "gclink",
   react: "🍁",
   start: async (Miku, m, { prefix, isBotAdmin, isAdmin, metadata, mime }) => {
-    if (!isAdmin)
-      return Miku.sendMessage(m.from, { text: mess.useradmin }, { quoted: m });
+
+    if (!isBotAdmin) return m.reply(mess.botadmin);
 
     var link = await Miku.groupInviteCode(m.from);
     var linkcode = `https://chat.whatsapp.com/${link}`;

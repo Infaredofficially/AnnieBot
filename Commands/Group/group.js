@@ -1,9 +1,9 @@
 module.exports = {
   name: "group",
-  alias: ["gc", "group open"],
-  desc: "Set a group profile picture.",
+  alias: ["gc"],
+  desc: "Open / Close Group",
   category: "Group",
-  usage: `Tag an Image and type -setppgc}`,
+  usage: `group open/close`,
   react: "🍁",
   start: async (
     Miku,
@@ -13,21 +13,12 @@ module.exports = {
       prefix,
       isBotAdmin,
       isAdmin,
-      mentionByTag,
       args,
       pushName,
-      mime,
-      quoted,
     }
   ) => {
-    if (!isAdmin && !isBotAdmin)
-      return Miku.sendMessage(
-        m.from,
-        {
-          text: `Bot and *${pushName}* both must be admin in order to use this command !`,
-        },
-        { quoted: m }
-      );
+    if (!isAdmin && !isBotAdmin) return m.reply(`Bot and *${pushName}* both must be admin in order to use this command !`);
+    
     if (args[0] === "close") {
       await Miku.groupSettingUpdate(m.from, "announcement").then((res) =>
         m.reply(`Group has been closed!`)
@@ -37,25 +28,8 @@ module.exports = {
         m.reply(`Group has been opened!`)
       );
     } else {
-      let buttons = [
-        {
-          buttonId: "${prefix}group open",
-          buttonText: { displayText: "Open" },
-          type: 1,
-        },
-        {
-          buttonId: "${prefix}group close",
-          buttonText: { displayText: "Close" },
-          type: 1,
-        },
-      ];
-      let buttonMessage = {
-        text: `\n*「 Group Message Settings 」*\n\nSelect an option below.\n`,
-        footer: `${botName}`,
-        buttons: buttons,
-        headerType: 4,
-      };
-      Miku.sendMessage(m.from, buttonMessage, { quoted: m });
+      
+      await Miku.sendMessage(m.from, {image: { url: botImage2}, caption: `\n*「 Group Message Settings 」*\n\nSelect an option below.\n\n*_Usage:_*\n\n*${prefix}group open*\n*${prefix}group close*\n`,}, { quoted: m });
     }
   },
 };

@@ -9,20 +9,20 @@ module.exports = {
   react: "😉",
   start: async (Miku, m, { prefix }) => {
     var VID = await getBuffer(`https://nekopai-cosplayvideo-api.onrender.com/`);
-    var Button = [
+    /*var Button = [
       {
         buttonId: `${prefix}cv`,
         buttonText: { displayText: `>>` },
         type: 1,
       },
-    ];
+    ];*/
     let bmffg = {
       video: VID,
       gifPlayback:true,
-      caption: `Cosplayvideo API by *Team Atlas*\n\n*API link:* https://shubhapratimbiswas.tech\n`,
-      footer: `*${botName}*`,
+      caption: `Cosplayvideo API by *Team Atlas*\n`,
+      /*footer: `*${botName}*`,
       buttons: Button,
-      headerType: 4,
+      headerType: 4,*/
     };
     await Miku.sendMessage(m.from, bmffg, { quoted: m }).catch((err) => {
       return "Error!";

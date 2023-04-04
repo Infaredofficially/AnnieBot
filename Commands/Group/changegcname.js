@@ -11,19 +11,10 @@ module.exports = {
     { text, prefix, isBotAdmin, isAdmin, pushName, metadata, args, mime }
   ) => {
     if (!isAdmin && !isBotAdmin)
-      return Miku.sendMessage(
-        m.from,
-        {
-          text: `*Bot* and *${pushName}* both must be *Admin* in order to use this Command!`,
-        },
-        { quoted: m }
-      );
+      return m.reply(`*Bot* and *${pushName}* both must be *Admin* in order to use this Command!`);
+
     if (!args[0])
-      return Miku.sendMessage(
-        m.from,
-        { text: `Please provide a new group name !` },
-        { quoted: m }
-      );
+      return m.reply(`Please provide a new group name !`);
 
     var newGCName = args.join(" ");
     var oldGCName = metadata.subject;

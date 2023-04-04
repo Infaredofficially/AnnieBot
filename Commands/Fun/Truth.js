@@ -12,25 +12,6 @@ module.exports = {
       "https://dull-plum-panda-gear.cyclic.app/truth"
     );
 
-    const buttons = [
-      {
-        buttonId: `${prefix}dare`,
-        buttonText: { displayText: "Dare" },
-        type: 1,
-      },
-      {
-        buttonId: `${prefix}truth`,
-        buttonText: { displayText: "Truth >>" },
-        type: 1,
-      },
-    ];
-    const buttonMessage = {
-      image: { url: botImage3 },
-      caption: `*${shibam.data}*`,
-      footer: `*${botName}*`,
-      buttons: buttons,
-      headerType: 4,
-    };
-    return await Miku.sendMessage(m.from, buttonMessage, { quoted: m });
+    await Miku.sendMessage(m.from, {image: { url: botImage3 },caption: `*${shibam.data}*`,}, { quoted: m });
   },
 };

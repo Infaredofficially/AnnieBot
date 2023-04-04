@@ -7,7 +7,7 @@ module.exports = {
   react: "🎀",
   start: async (Miku, m, { text, prefix ,modStatus}) => {
 
-    let txt = `       『  *Bot Charactes*  』\n\n\n_0 - Atlas MD_\n\n_1 - Power MD_\n\n_2 - Makima MD_\n\n_3 - Denji MD_\n\n_4 - Zero Two_\n\n_5 - Chika MD_\n\n_6 - Miku MD_\n\n_7 - Marin MD_\n\n_8 - Ayanokoji MD_\n\n_9 - Ruka MD_\n\n_10 - Mizuhara MD_\n\n_11 - Rem MD_\n\n_12 - Sumi MD_\n\n_13 - Kaguya MD_\n\n_14 - Yumeko MD_\n\n_15 - Kurumi MD_\n\n_16 - Mai MD_\n\n_17 - Yor MD_\n\n_18 - Shinbou MD_\n\n_19 - Eiko MD_\n\n\nExample: *${prefix}setchar 5* or choose button below.\n`;
+    let txt = `                  『  *Bot Charactes*  』\n\n\n_0 - Atlas MD_\n\n_1 - Power MD_\n\n_2 - Makima MD_\n\n_3 - Denji MD_\n\n_4 - Zero Two_\n\n_5 - Chika MD_\n\n_6 - Miku MD_\n\n_7 - Marin MD_\n\n_8 - Ayanokoji MD_\n\n_9 - Ruka MD_\n\n_10 - Mizuhara MD_\n\n_11 - Rem MD_\n\n_12 - Sumi MD_\n\n_13 - Kaguya MD_\n\n_14 - Yumeko MD_\n\n_15 - Kurumi MD_\n\n_16 - Mai MD_\n\n_17 - Yor MD_\n\n_18 - Shinbou MD_\n\n_19 - Eiko MD_\n\n\nUsage Example: *${prefix}setchar 11* \n`;
 
     let botLogos = [
         'https://wallpapercave.com/wp/wp5924545.jpg',
@@ -34,6 +34,8 @@ module.exports = {
 
     let randomimage = botLogos[Math.floor(Math.random() * botLogos.length)];
    
+    /*  -- Disabled Buttons --
+
     let sections = [] 
     let chars = ['Atlas MD', 'Power MD', 'Makima MD', 'Denji MD', 'Zero Two', 'Chika MD' , 'Miku MD', 'Marin MD','Ayanokoji MD','Ruka MD','Mizuhara MD','Rem MD','Sumi MD','Kaguya MD','Yumeko MD','Kurumi MD','Mai MD','Yor MD','Shinbou MD','Eiko MD']
     let buttonDesc =[`Set bot character to Atlas MD`, `Set bot character to Power MD`, `Set bot character to Makima MD`, `Set bot character to Denji MD`, `Set bot character to Zero Two`, `Set bot character to Chika MD`, `Set bot character to Miku MD`, `Set bot character to Marin MD`, `Set bot character to Ayanokoji MD`, `Set bot character to Ruka MD`, `Set bot character to Mizuhara MD`, `Set bot character to Rem MD`, `Set bot character to Sumi MD`, `Set bot character to Kaguya MD`, `Set bot character to Yumeko MD`, `Set bot character to Kurumi MD`, `Set bot character to Mai MD`, `Set bot character to Yor MD`, `Set bot character to Shinbou MD`, `Set bot character to Eiko MD`]
@@ -53,15 +55,15 @@ module.exports = {
                 sections.push(list)
             }
 
-
+      
     let buttonMessage = {
-      //image: { url: randomimage },
-      text: txt,
+      image: { url: randomimage },
+      caption: txt,
       footer: `*${botName}*`,
       buttonText: "Choose Character",
       sections,
-    };
+    }; */
 
-    Miku.sendMessage(m.from, buttonMessage, { quoted: m });
+    Miku.sendMessage(m.from, {image: { url: randomimage },caption: txt,}, { quoted: m });
   },
 };

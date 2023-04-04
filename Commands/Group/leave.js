@@ -26,12 +26,7 @@ module.exports = {
       });
 
     if (modStatus == "false" && !isCreator && !isAdmin)
-      return Miku.sendMessage(
-        m.from,
-        { text: "Sorry, only *GroupAdmins* and *Mods* can use this command !" },
-        { quoted: m }
-      );
-    let img = "https://wallpapercave.com/wp/wp9667218.png";
+      return m.reply("Sorry, only *Group Admins* and *Mods* can use this command !");
 
     await Miku.sendMessage(m.from, {
       image: { url: "https://wallpapercave.com/wp/wp9667218.png" },

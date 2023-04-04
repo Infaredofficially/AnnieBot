@@ -11,8 +11,7 @@ module.exports = {
         "Sorry, this command is not allowed in *Atlas Support Group* !\n\nYou are not allowed to change support group link !"
       );
 
-    if (!isAdmin)
-      return Miku.sendMessage(m.from, { text: mess.useradmin }, { quoted: m });
+      if (!isAdmin && !isBotAdmin) return m.reply(`Bot and *${pushName}* both must be admin in order to use this command !`);
 
     try {
       await Miku.groupRevokeInvite(m.from).then((res) =>
