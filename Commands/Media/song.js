@@ -1,5 +1,3 @@
-const YT = require("../../lib/ytdl-core.js");
-const fs = require("fs");
 const yts = require("youtube-yts");
 
 module.exports = {
@@ -16,55 +14,36 @@ module.exports = {
         { text: `Please provide a song name to play !` },
         { quoted: m }
       );
-    const songSerachTerm = args.join(" ");
-    const songInfo = await yts(songSerachTerm);
+    const songSearchTerm = args.join(" ");
+    const songInfo = await yts(songSearchTerm);
     const song = songInfo.videos[0];
-    let videoUrl = song.url;
-    let videoId = videoUrl.split("v=")[1];
 
-    await Miku.sendMessage(
-      m.from,
-      {
-        image: { url: song.thumbnail },
-        caption: `\n*Song name :* _${song.title}_
+    let instructions = `
+To play audio: ${prefix}ytad ${song.url}
+
+To play video: ${prefix}ytvd ${song.url}
+
+To send as document: ${prefix}ytdoc ${song.url}
+`;
+
+    let buttonMessage = {
+      image: { url: song.thumbnail },
+      caption: `
+           *『 Youtube Audio Player 』*
+
+
+*Song name :* _${song.title}_
 
 *Duration :* _${song.timestamp}_
 
-*Url :* _${song.url}_
+*Uploaded :* _${song.ago}_
 
+*Channel :* _${song.author.name}_
 
-_*Downloading Song...*_\n\n`,
-      },
-      { quoted: m }
-    );
-
-    yts(videoId).then((result) => {
-      const length = result.seconds;
-
-      if (length >= 1800) {
-        return m.reply(
-          "Command Rejected! The audio is more than 30 minutes long! "
-        );
-      } else {
-        const ytaud = YT.mp3(videoId).then((file) => {
-          Miku.sendMessage(
-            m.from,
-            {
-              audio: fs.readFileSync(file.path),
-              mimetype: "audio/mpeg",
-            },
-            { quoted: m }
-          );
-          fs.unlinkSync(file.path);
-        });
-      }
-    }).catch((err) => {
-      console.error(err);
-      Miku.sendMessage(
-        m.from,
-        { text: `Failed to play the song: ${err.message}` },
-        { quoted: m }
-      );
-    });
+*Url :* _${song.url}_\n\n${instructions}`,
+      footer: `*${botName}*`,
+      headerType: 4,
+    };
+    Miku.sendMessage(m.from, buttonMessage, { quoted: m });
   },
 };
