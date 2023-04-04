@@ -17,8 +17,8 @@ module.exports = {
           { text: `Please provide a song name to play !` },
           { quoted: m }
         );
-      const songSerachTerm = args.join(" ");
-      const songInfo = await yts(songSerachTerm);
+      const songSearchTerm = args.join(" ");
+      const songInfo = await yts(songSearchTerm);
       const song = songInfo.videos[0];
       let videoUrl = song.url;
       let videoId = videoUrl.split("v=")[1];
@@ -52,7 +52,7 @@ _*Downloading Video...*_\n\n`,
           m.from,
           {
             video: { url: ytaud.videoUrl },
-            caption:`${song.title} By: *${botName}*`,
+            caption:`${song.title} By: ${botName}`,
           },
           { quoted: m }
         );
