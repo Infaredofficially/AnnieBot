@@ -1,6 +1,6 @@
 module.exports = {
     name: "hi",
-    alias: ["hello","alive"],
+    alias: ["hello","alive","info"],
     desc: "Say hello to bot.",
     react: "🧣",
     category: "Core",
