@@ -13,7 +13,7 @@ module.exports = {
     m,
     { text, prefix, isBotAdmin, isAdmin, mentionByTag,pushName}
   ) => {
-    if (!isAdmin && !isBotAdmin) return m.reply(`Bot and *${pushName}* both must be admin in order to use this command !`);
+    if (!isAdmin) return m.reply(`Bot and *${pushName}* both must be admin in order to use this command !`);
     if (!text && !m.quoted) return m.reply(`Please tag a user to *Remove* from group!`)
 
     if (!text && !m.quoted) {
