@@ -192,15 +192,6 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
 
 
 
-<br>
-<h4 align="center"> Facing Trouble? Join my WhatsApp Group for Support.
-</h4>
-
-<p align="center" >
-<a href="https://cutt.ly/AtlasSupportStrict"><img src="https://img.shields.io/badge/Join Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" width="140px">
-</a>
-</p>
-
 </details>
 
 <br>
@@ -438,6 +429,16 @@ npm start
 </details> 
 
 <br><br>  
+    
+    
+
+<h4 align="center"> Facing Trouble? Join my WhatsApp Group for Support.
+</h4>
+
+<p align="center" >
+<a href="https://cutt.ly/AtlasSupportStrict"><img src="https://img.shields.io/badge/Join Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" width="140px">
+</a>
+</p>
     
 ---
 <br>
