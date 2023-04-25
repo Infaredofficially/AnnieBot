@@ -432,7 +432,7 @@ npm start
     
     
 
-<h4 align="center"> Facing Trouble? Join my WhatsApp Group for discussion ( Strictly no +1 numbers allowed ).
+<h4 align="center"> Join my WhatsApp Group for Discussion / Suggestion ( Strictly no +1 numbers allowed ).
 </h4>
 
 <p align="center" >
