@@ -9,7 +9,7 @@ module.exports = {
   category: "Fun",
   start: async (Miku, m, { text, prefix }) => {
     const shibam = await axios.get(
-      "https://dull-plum-panda-gear.cyclic.app/truth"
+      "https://smiling-hosiery-bear.cyclic.app/weeb/truth"
     );
 
     await Miku.sendMessage(m.from, {image: { url: botImage3 },caption: `*${shibam.data}*`,}, { quoted: m });
