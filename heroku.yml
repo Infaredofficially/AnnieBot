@@ -2,4 +2,4 @@ build:
   docker: 
       worker: Dockerfile
 run:
-   web: npm start
+   worker: npm i forever && forever index.js

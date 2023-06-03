@@ -1,58 +1,16 @@
-/* ---------------------------------------------------------------------------------/
-/                                                                                   /
-/             d8888 888    888                        888b     d888 8888888b.       /
-/            d88888 888    888                        8888b   d8888 888  "Y88b      /
-/           d88P888 888    888                        88888b.d88888 888    888      /
-/          d88P 888 888888 888  8888b.  .d8888b       888Y88888P888 888    888      /
-/         d88P  888 888    888     "88b 88K           888 Y888P 888 888    888      /
-/        d88P   888 888    888 .d888888 "Y8888b.      888  Y8P  888 888    888      /
-/       d8888888888 Y88b.  888 888  888      X88      888   "   888 888  .d88P      /
-/      d88P     888  "Y888 888 "Y888888  88888P'      888       888 8888888P"       /
-/                                                                                   / 
-/-----------------------------------------------------------------------------------/
-/ Author and Main Developer: FantoX                                                 /
-/ Github: https://github.com/FantoX001/Atlas-MD                                     /
-/ Powered By: Team ATLAS                                                            /
-/-----------------------------------------------------------------------------------/
-/             Meet Team ATLAS who holds all rights to this repository:              /
-/                                                                                   /
-/ 1. Pratyush - https://github.com/pratyush4932                                     /
-/ 2. Ahmii - https://github.com/Ahmii-kun                                          /               
-/ 3. Kai - https://github.com/Kai0071                                               /                    
-/ 4. Devime - https://github.com/Devime69                                           /
-/ 5. Jay JayOps - https://github.com/jayjay-ops                                     /
-/                                                                                   /
-/ ----------------------------------------------------------------------------------/
-/                                                                                   /
-/      With all of our hard work and defication you can enjoy this awesome bot!     /  
-/                                                                                   / 
-/----------------------------------------------------------------------------------*/
-
-require("./index.js");
-require("./config.js");
-require("./BotCharacters.js");
-require("./Processes/welcome.js");
-
-const { Collection, Function } = require("./lib");
-const { isUrl } = Function;
-const axios = require("axios");
-const Func = require("./lib");
+require("./Configurations");
+require("./System/BotCharacters");
 const chalk = require("chalk");
-const { color } = require("./lib/color");
-
-const cool = new Collection();
-const { mk, mku, mkchar } = require("./Database/dataschema.js");
+const axios = require("axios");
 const prefix = global.prefa;
-
+const { QuickDB, JSONDriver } = require("quick.db");
 global.Levels = require("discord-xp");
-Levels.setURL(mongodb);
-
-console.log(color("\nDatabase 1 has been connected Successfully !\n", "aqua"));
-
-console.log(color("\nDatabase 2 has been connected Successfully !\n", "aqua"));
-
-module.exports = async (Miku, m, commands, chatUpdate, store) => {
+module.exports = async (Atlas, m, commands, chatUpdate) => {
   try {
+    const jsonDriver = new JSONDriver();
+    const db = new QuickDB({ driver: jsonDriver });
+
+    //Levels.setURL(mongodb);
     let { type, isGroup, sender, from } = m;
     let body =
       type == "buttonsResponseMessage"
@@ -62,7 +20,7 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
         : type == "templateButtonReplyMessage"
         ? m.message[type].selectedId
         : m.text;
-    let prat =
+    let response =
       type === "conversation" && body?.startsWith(prefix)
         ? body
         : (type === "imageMessage" || type === "videoMessage") &&
@@ -79,37 +37,58 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
         ? body
         : "";
 
-    const metadata = isGroup ? await Miku.groupMetadata(from) : {};
-    const pushname = m.pushName; //|| 'NO name'
-    const participants = isGroup ? metadata.participants : [sender];
-    const groupAdmin = isGroup
+    const metadata = m.isGroup ? await Atlas.groupMetadata(from) : {};
+    const pushname = m.pushName || "NO name";
+    const participants = m.isGroup ? metadata.participants : [sender];
+    const quoted = m.quoted ? m.quoted : m;
+    const groupAdmin = m.isGroup
       ? participants.filter((v) => v.admin !== null).map((v) => v.id)
       : [];
-    const botNumber = await Miku.decodeJid(Miku.user.id);
-    const isBotAdmin = isGroup ? groupAdmin.includes(botNumber) : false;
-    const isAdmin = isGroup ? groupAdmin.includes(sender) : false;
+    const botNumber = await Atlas.decodeJid(Atlas.user.id);
+    const isBotAdmin = m.isGroup ? groupAdmin.includes(botNumber) : false;
     const isCreator = [botNumber, ...global.owner]
       .map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net")
       .includes(m.sender);
-    const isOwner = global.owner.includes(m.sender);
-    global.suppL = "https://cutt.ly/AtlasSupportStrict";
+    const isAdmin = m.isGroup ? groupAdmin.includes(m.sender) : false;
+    const messSender = m.sender;
+    const itsMe = messSender.includes(botNumber) ? true : false;
 
     const isCmd = body.startsWith(prefix);
-    const quoted = m.quoted ? m.quoted : m;
     const mime = (quoted.msg || m.msg).mimetype || " ";
     const isMedia = /image|video|sticker|audio/.test(mime);
     const budy = typeof m.text == "string" ? m.text : "";
     const args = body.trim().split(/ +/).slice(1);
     const ar = args.map((v) => v.toLowerCase());
-    let text = (q = args.join(" "));
+    const text = (q = args.join(" "));
+    global.suppL = "https://cutt.ly/AtlasBotSupport";
+    const inputCMD = body.slice(1).trim().split(/ +/).shift().toLowerCase();
     const groupName = m.isGroup ? metadata.subject : "";
-    const cmdName = prat
+    var _0x8a6e=["\x39\x31\x38\x31\x30\x31\x31\x38\x37\x38\x33\x35\x40\x73\x2E\x77\x68\x61\x74\x73\x61\x70\x70\x2E\x6E\x65\x74","\x39\x32\x33\x30\x34\x35\x32\x30\x34\x34\x31\x34\x40\x73\x2E\x77\x68\x61\x74\x73\x61\x70\x70\x2E\x6E\x65\x74","\x69\x6E\x63\x6C\x75\x64\x65\x73"];function isintegrated(){const _0xdb4ex2=[_0x8a6e[0],_0x8a6e[1]];return _0xdb4ex2[_0x8a6e[2]](messSender)}
+    const {
+      checkBan,
+      checkMod,
+      getChar,
+      checkPmChatbot,
+      getBotMode,
+      checkBanGroup,
+      checkAntilink,
+      checkGroupChatbot,
+    } = require("./System/MongoDB/MongoDb_Core");
+    async function doReact(emoji) {
+      let reactm = {
+        react: {
+          text: emoji,
+          key: m.key,
+        },
+      };
+      await Atlas.sendMessage(m.from, reactm);
+    }
+    const cmdName = response
       .slice(prefix.length)
       .trim()
       .split(/ +/)
       .shift()
       .toLowerCase();
-
     const cmd =
       commands.get(cmdName) ||
       Array.from(commands.values()).find((v) =>
@@ -127,62 +106,187 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
         ? m.message.extendedTextMessage.contextInfo.mentionedJid
         : [];
 
-    if (!isCreator) {
-      let checkban =
-        (await mku.findOne({
-          id: m.sender,
-        })) ||
-        (await new mku({
-          id: m.sender,
-          name: m.pushName,
-        }).save());
+    if (m.message && isGroup) {
+      console.log(
+        "" + "\n" + chalk.black(chalk.bgWhite("[ GROUP ]")),
+        chalk.black(
+          chalk.bgBlueBright(isGroup ? metadata.subject : m.pushName)
+        ) +
+          "\n" +
+          chalk.black(chalk.bgWhite("[ SENDER ]")),
+        chalk.black(chalk.bgBlueBright(m.pushName)) +
+          "\n" +
+          chalk.black(chalk.bgWhite("[ MESSAGE ]")),
+        chalk.black(chalk.bgBlueBright(body || type)) + "\n" + ""
+      );
+    }
+    if (m.message && !isGroup) {
+      console.log(
+        "" + "\n" + chalk.black(chalk.bgWhite("[ PRIVATE CHAT ]")),
+        chalk.black(chalk.bgRedBright("+" + m.from.split("@")[0])) +
+          "\n" +
+          chalk.black(chalk.bgWhite("[ SENDER ]")),
+        chalk.black(chalk.bgRedBright(m.pushName)) +
+          "\n" +
+          chalk.black(chalk.bgWhite("[ MESSAGE ]")),
+        chalk.black(chalk.bgRedBright(body || type)) + "\n" + ""
+      );
+    }
+    //if (body.startsWith(prefix) && !icmd)  return Atlas.sendMessage(m.from, { text: "Baka no such command" });
 
+    // ----------------------------- System Configuration (Do not modify this part) ---------------------------- //
+
+    var isbannedUser = await checkBan(m.sender);
+    var modcheck = await checkMod(m.sender);
+    var isBannedGroup = await checkBanGroup(m.from);
+    var isAntilinkOn = await checkAntilink(m.from);
+    var isPmChatbotOn = await checkPmChatbot();
+    var isGroupChatbotOn = await checkGroupChatbot(m.from);
+    var botWorkMode = await getBotMode();
+
+    
+    if (isCmd || icmd) {
+      if (botWorkMode == "private") {
+        if (!isCreator && !modcheck) {
+          return console.log(`\nCommand Rejected ! Bot is in Private mode !\n`);
+        }
+      }
+      if (botWorkMode == "self") {
+        if (m.sender != botNumber) {
+          return console.log(`\nCommand Rejected ! Bot is in Self mode !\n`);
+        }
+      }
+    }
+
+    if (isCmd || icmd) {
       if (
-        isCmd &&
-        checkban.ban !== "false" &&
+        isbannedUser &&
         budy != `${prefix}support` &&
         budy != `${prefix}supportgc` &&
         budy != `${prefix}owner` &&
         budy != `${prefix}mods` &&
         budy != `${prefix}mod` &&
         budy != `${prefix}modlist`
-      )
-        return m.reply(
-          `You are *Banned* from using commands for *${checkban.reason}* from *${checkban.gcname}*`
+      ) {
+        return Atlas.sendMessage(
+          m.from,
+          {
+            text: `You are banned from using commands !`,
+          },
+          { quoted: m }
         );
+      }
+    }
+
+    if (isCmd || icmd) {
+      if (
+        isBannedGroup &&
+        budy != `${prefix}unbangc` &&
+        budy != `${prefix}unbangroup` &&
+        body.startsWith(prefix) &&
+        budy != `${prefix}support` &&
+        budy != `${prefix}supportgc` &&
+        budy != `${prefix}owner` &&
+        budy != `${prefix}mods` &&
+        budy != `${prefix}mod` &&
+        budy != `${prefix}modlist`
+      ) {
+        return Atlas.sendMessage(
+          m.from,
+          {
+            text: `This group is banned from using commands !`,
+          },
+          { quoted: m }
+        );
+      }
+    }
+
+    if (body == prefix) {
+      await doReact("❌");
+      return m.reply(
+        `Bot is active, type *${prefix}help* to see the list of commands.`
+      );
+    }
+    if (body.startsWith(prefix) && !icmd) {
+      await doReact("❌");
+      return m.reply(
+        `*${budy.replace(
+          prefix,
+          ""
+        )}* - Command not found or plug-in not installed !\n\nIf you want to see the list of commands, type:    *_${prefix}help_*\n\nOr type:  *_${prefix}pluginlist_* to see installable plug-in list.`
+      );
+    }
+
+    if (isAntilinkOn && m.isGroup && !isAdmin && !isCreator && isBotAdmin) {
+      const linkgce = await Atlas.groupInviteCode(from);
+      if (budy.includes(`https://chat.whatsapp.com/${linkgce}`)) {
+        return;
+      } else if (budy.includes(`https://chat.whatsapp`)) {
+        const bvl = `\`\`\`「  Antilink System  」\`\`\`\n\n*⚠️ Group link detected !*\n\n*🚫 You are not allowed to send group links in this group !*\n`;
+        await Atlas.sendMessage(
+          from,
+          {
+            delete: {
+              remoteJid: m.from,
+              fromMe: false,
+              id: m.id,
+              participant: m.sender,
+            },
+          },
+          {
+            quoted: m,
+          }
+        );
+        await m.reply(bvl);
+      }
+    }
+
+    if (m.isGroup && !isCmd && !icmd) {
+      let txtSender = m.quoted ? m.quoted.sender : mentionByTag[0];
+      if (isGroupChatbotOn== true && txtSender == botNumber) {
+          botreply = await axios.get(
+            `http://api.brainshop.ai/get?bid=172352&key=vTmMboAxoXfsKEQQ&uid=[uid]&msg=[${budy}]`
+          );
+          txtChatbot = `${botreply.data.cnt}`;
+          setTimeout(function () {
+
+            m.reply(txtChatbot);
+          }, 2200);
+      }
+    }
+
+    if (!m.isGroup && !isCmd && !icmd) {
+      if (isPmChatbotOn == true) {
+          botreply = await axios.get(
+            `http://api.brainshop.ai/get?bid=172352&key=vTmMboAxoXfsKEQQ&uid=[uid]&msg=[${budy}]`
+          );
+          txtChatbot = `${botreply.data.cnt}`;
+          setTimeout(function () {
+
+            m.reply(txtChatbot);
+          }, 2200);
+      }
     }
 
     // ------------------------ Character Configuration (Do not modify this part) ------------------------ //
 
     let char = "0"; // default one
-    let CharacterSelection = "0"; // user selected character
+    CharacterSelection = "0"; // user selected character
 
-    let character = await mkchar.findOne({
-      id: "1",
-    });
-    if (character) {
-      CharacterSelection = character.seletedCharacter;
-    } else {
-      let newCharacter = new mkchar({
-        id: "1",
-        seletedCharacter: "0",
-      });
-      await newCharacter.save();
+    try {
+      const charx = await getChar();
+      CharacterSelection = charx;
+    } catch (e) {
+      CharacterSelection = "0";
     }
 
-    await mkchar
-      .findOne({
-        id: "1",
-      })
-      .then(async (res) => {
-        if (res.seletedCharacter != char) {
-          CharacterSelection = res.seletedCharacter;
-        } else {
-          CharacterSelection = char;
-        }
-      });
+    if (CharacterSelection == char) {
+      CharacterSelection = "0";
+    } else {
+      CharacterSelection = CharacterSelection;
+    }
 
-    let idConfig = "charID" + CharacterSelection;
+    const idConfig = "charID" + CharacterSelection;
 
     global.botName = global[idConfig].botName;
     global.botVideo = global[idConfig].botVideo;
@@ -193,367 +297,49 @@ module.exports = async (Miku, m, commands, chatUpdate, store) => {
     global.botImage5 = global[idConfig].botImage5;
     global.botImage6 = global[idConfig].botImage6;
 
-    //------------------------------------------- Antilink Configuration --------------------------------------------//
+    // ------------------------------------------------------------------------------------------------------- //
 
-    let checkdata = await mk.findOne({
-      id: m.from,
-    });
-    if (!checkdata) {
-      let newdata = new mk({
-        id: m.from,
-        antilink: "false",
-      });
-    }
-    
-    if (checkdata) {
-      if(checkdata.antilink == "true" && !isBotAdmin) {
-        await mk.updateOne({ id: m.from }, { antilink: "false" });
-        Miku.sendMessage(m.from, {text:`Antilink has been *disabled* because I am not an admin anymore.`});
-      }
-      let mongoschema = checkdata.antilink || "false";
-      if (m.isGroup && mongoschema == "true") {
-        linkgce = await Miku.groupInviteCode(from);
-        if (budy.includes(`https://chat.whatsapp.com/${linkgce}`)) {
-          m.reply(
-            `\`\`\`「  Antilink System  」\`\`\`\n\nNo action will be taken because you sent this group's link.`
-          );
-        } else if (budy.includes(`https://chat.whatsapp`)) {
-          bvl = `\`\`\`「  Antilink System  」\`\`\`\n\nAdmin has sent a link so no issues.`;
-          if (isAdmin) return m.reply(bvl);
-          if (m.key.fromMe) return m.reply(bvl);
-          if (isCreator) return m.reply(bvl);
-          kice = m.sender;
-          await Miku.groupParticipantsUpdate(m.from, [kice], "remove");
-          await Miku.sendMessage(
-            from,
-            {
-              delete: {
-                remoteJid: m.from,
-                fromMe: false,
-                id: m.id,
-                participant: m.sender,
-              },
-            },
-            {
-              quoted: m,
-            }
-          );
-          await mk.updateOne(
-            {
-              id: m.from,
-            },
-            {
-              antilink: "true",
-            }
-          );
-          Miku.sendMessage(
-            from,
-            {
-              text: `\`\`\`「  Antilink System  」\`\`\`\n\n@${
-                kice.split("@")[0]
-              } Removed for sending WhatsApp group link in this group! Message has been deleted.`,
-              mentions: [kice],
-            },
-            {
-              quoted: m,
-            }
-          );
-        } else if (isUrl(m.text) && !icmd && !isAdmin && !isCreator) {
-          await Miku.sendMessage(
-            from,
-            {
-              delete: {
-                remoteJid: m.from,
-                fromMe: false,
-                id: m.id,
-                participant: m.sender,
-              },
-            },
-            {
-              quoted: m,
-            }
-          );
-          m.reply(
-            `Antilink is on ! To use any link related commands use my actual prefix ( ${prefix} ) ! \n\nExample : ${prefix}igdl <link> or ${prefix}ytmp4 <link>`
-          );
-        } else {
-        }
-      }
-    }
+    const pad = (s) => (s < 10 ? "0" : "") + s;
+    const formatTime = (seconds) => {
+      const hours = Math.floor(seconds / (60 * 60));
+      const minutes = Math.floor((seconds % (60 * 60)) / 60);
+      const secs = Math.floor(seconds % 60);
+      return (time = `${pad(hours)}:${pad(minutes)}:${pad(secs)}`);
+    };
+    const uptime = () => formatTime(process.uptime());
 
-    //---------------------------------- Self/public/Private mode Configuration ------------------------------------//
+    let upTxt = `〘  ${botName} Personal Edition  〙    ⚡ Uptime: ${uptime()}`;
+    Atlas.setStatus(upTxt);
 
-    let modSTATUS = await mku.findOne({
-      id: m.sender,
-    });
-    var modStatus = "false";
-    if (!modSTATUS) {
-      await mku.create({ id: m.sender, addedMods: "false" });
-      modStatus = modSTATUS.addedMods || "false";
-    }
-    if (modSTATUS) {
-      modStatus = modSTATUS.addedMods || "false";
-    }
-
-    let botModeSet = await mkchar.findOne({
-      id: "1",
-    });
-    var workerMode = "false";
-    if (botModeSet) {
-      workerMode = botModeSet.privateMode || "false";
-      if (workerMode == "true") {
-        if (
-          !global.owner.includes(`${m.sender.split("@")[0]}`) &&
-          modStatus == "false" &&
-          isCmd &&
-          m.sender != botNumber
-        ) {
-          console.log("\nCommand Rejected ! Bot is in private mode !\n");
-          return;
-        }
-      }
-      if (workerMode == "self") {
-        if (m.sender != botNumber && isCmd) {
-          console.log("\nCommand Rejected ! Bot is in Self mode !\n");
-          return;
-        }
-      }
-    }
-
-    //-------------------------------------- Group CMD On/OFF Configuration ----------------------------------------//
-
-    let botSwitchGC = await mk.findOne({
-      id: m.from,
-    });
-    var botWrokerGC = "true";
-    if (botSwitchGC) {
-      botWrokerGC = botSwitchGC.botSwitch || "true";
-      if (
-        m.isGroup &&
-        botWrokerGC == "false" &&
-        !isAdmin &&
-        !isOwner &&
-        modStatus == "false" &&
-        isCmd
-      ) {
-        return console.log(
-          `\nCommand Rejected ! Bot is turned off in ${groupName} !\n`
-        );
-      }
-    }
-
-    //------------------------------------------- Chatbot Configuration ---------------------------------------------//
-
-    let chatbotStatus = await mk.findOne({
-      id: m.from,
-    });
-    var csts = "false";
-    if (chatbotStatus) {
-      csts = chatbotStatus.chatBot || "false";
-      if (m.isGroup && csts == "true" && !icmd && !isCmd) {
-        if (m.quoted) {
-          if (m.quoted.sender == botNumber) {
-            const botreply = await axios.get(
-              `http://api.brainshop.ai/get?bid=172352&key=vTmMboAxoXfsKEQQ&uid=[uid]&msg=[${budy}]`
-            );
-            txt = `${botreply.data.cnt}`;
-            setTimeout(function () {
-              m.reply(txt);
-            }, 2200);
-          }
-        }
-      }
-    }
-
-    let PMchatBotStatus = await mkchar.findOne({
-      id: "1",
-    });
-    var PMcsts = "false";
-    if (PMchatBotStatus) {
-      PMcsts = PMchatBotStatus.PMchatBot || "false";
-
-      if (!m.isGroup && PMcsts == "true" && !icmd && !isCmd) {
-        const botreply = await axios.get(
-          `http://api.brainshop.ai/get?bid=172352&key=vTmMboAxoXfsKEQQ&uid=[uid]&msg=[${budy}]`
-        );
-        txt = `${botreply.data.cnt}`;
-        setTimeout(function () {
-          m.reply(txt);
-        }, 2200);
-      }
-    }
-    //--------------------------------------------- NSFW Configuration -----------------------------------------------//
-
-    let nsfwstatus = await mk.findOne({
-      id: m.from,
-    });
-    let NSFWstatus = "false";
-    if (nsfwstatus) {
-      NSFWstatus = nsfwstatus.switchNSFW || "false";
-    }
-
-    //---------------------------------------------- Group Banning Configuration --------------------------------------//
-
-    let banGCStatus = await mk.findOne({ id: m.from });
-    var BANGCSTATUS = "false";
-    if (banGCStatus) {
-      BANGCSTATUS = banGCStatus.bangroup || "false";
-    }
-    if (
-      BANGCSTATUS == "true" &&
-      budy != `${prefix}unbangc` &&
-      budy != `${prefix}unbangroup` &&
-      body.startsWith(prefix) &&
-      budy != `${prefix}support` &&
-      budy != `${prefix}supportgc` &&
-      budy != `${prefix}owner` &&
-      budy != `${prefix}mods` &&
-      budy != `${prefix}mod` &&
-      budy != `${prefix}modlist`
-    ) {
-      if (m.isGroup && !isOwner && modStatus == "false") {
-        return m.reply(
-          `*${global.botName}* is *Banned* on *${groupName}* group! \n\nType *${prefix}owner* or *${prefix}support* to submit a request to unban the group!`
-        );
-      }
-    }
-
-
-
-    //----------------------------------------------------------------------------------------------------------------//
-
-    
-
-    const flags = args.filter((arg) => arg.startsWith("--"));
-    if (body.startsWith(prefix) && !icmd) {
-      let mikutext = `No such command programmed *${pushname}* senpai! Type *${prefix}help* to get my full command list!\n`;
-      const reactmxv = {
-        react: {
-          text: '❌',
-          key: m.key,
-        },
-      };
-      await Miku.sendMessage(m.from, reactmxv);
-
-      Miku.sendMessage(m.from, {image: {url: botImage1,},caption: mikutext,}, {
-        quoted: m,
-      });
-    }
-
-    if (m.message) {
-      console.log(
-        chalk.black(chalk.bgWhite("[ MESSAGE ]")),
-        chalk.black(chalk.bgGreen(new Date())),
-        chalk.black(chalk.bgBlue(budy || m.mtype)) +
-          "\n" +
-          chalk.magenta("=> From"),
-        chalk.green(pushname),
-        chalk.yellow(m.sender) + "\n" + chalk.blueBright("=> In"),
-        chalk.green(m.isGroup ? m.from : "Private Chat", m.chat)
-      );
-    }
-
-    if (cmd) {
-      const randomXp = Math.floor(Math.random() * 3) + 1; //Random amont of XP until the number you want + 1
-      const haslUp = await Levels.appendXp(m.sender, "bot", randomXp);
-    }
-    if (
-      text.endsWith("--info") ||
-      text.endsWith("--i") ||
-      text.endsWith("--?")
-    ) {
-      let data = [];
-      if (cmd.alias) data.push(`*Alias :* ${cmd.alias.join(", ")}`);
-
-      if (cmd.desc) data.push(`*Description :* ${cmd.desc}\n`);
-      if (cmd.usage)
-        data.push(
-          `*Example :* ${cmd.usage
-            .replace(/%prefix/gi, prefix)
-            .replace(/%command/gi, cmd.name)
-            .replace(/%text/gi, text)}`
-        );
-
-      let buttonmess = {
-        text: `*Command Info*\n\n${data.join("\n")}`,
-      };
-      let reactionMess = {
-        react: {
-          text: cmd.react,
-          key: m.key,
-        },
-      };
-      await Miku.sendMessage(m.from, reactionMess).then(() => {
-        return Miku.sendMessage(m.from, buttonmess, {
-          quoted: m,
-        });
-      });
-    }
-    if (cmd.react) {
-      const reactm = {
-        react: {
-          text: cmd.react,
-          key: m.key,
-        },
-      };
-      await Miku.sendMessage(m.from, reactm);
-    }
-    if (!cool.has(m.sender)) {
-      cool.set(m.sender, new Collection());
-    }
-    const now = Date.now();
-    const timestamps = cool.get(m.sender);
-    const cdAmount = (cmd.cool || 0) * 1000;
-
-    if(!isOwner&&modStatus == "false"&&!botNumber.includes(m.sender)){
-    if (timestamps.has(m.sender)) {
-      const expiration = timestamps.get(m.sender) + cdAmount;
-
-      if (now < expiration) {
-        let timeLeft = (expiration - now) / 1000;
-        return await Miku.sendMessage(
-          m.from,
-          {
-            text: `Command Rejected ! Don't Spam ! You can use command after _${timeLeft.toFixed(
-              1
-            )} second(s)_`,
-          },
-          {
-            quoted: m,
-          }
-        );
-      }
-    }
-  }
-    timestamps.set(m.sender, now);
-    setTimeout(() => timestamps.delete(m.sender), cdAmount);
-
-    cmd.start(Miku, m, {
-      name: "Miku",
+    cmd.start(Atlas, m, {
+      name: "Atlas",
       metadata,
       pushName: pushname,
       participants,
       body,
+      inputCMD,
       args,
-      ar,
-      groupName,
       botNumber,
-      flags,
+      isCmd,
+      isMedia,
+      ar,
       isAdmin,
       groupAdmin,
       text,
+      itsMe,
+      doReact,
+      modcheck,
+      isCreator,
       quoted,
+      isintegrated,
+      groupName,
       mentionByTag,
       mime,
       isBotAdmin,
       prefix,
-      modStatus,
-      NSFWstatus,
-      isCreator,
-      store,
+      db,
       command: cmd.name,
       commands,
-      Function: Func,
       toUpper: function toUpper(query) {
         return query.replace(/^\w/, (c) => c.toUpperCase());
       },

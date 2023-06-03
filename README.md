@@ -22,13 +22,11 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
   <a href="https://github.com/FantoX001/Atlas-MD/stargazers">
     <img src="https://img.shields.io/github/stars/FantoX001/Atlas-MD?style=social">
   </a>
+<p align="center">
+<a href="https://github.com/FantoX001/Atlas-MD"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FFantoX001%2FAtlas-MD&count_bg=%23FFA305&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=People+Visited&edge_flat=false)](https://hits.seeyoufarm.com" width="150px" /></a>
+</p>
 
-<br>
 
-<a href="https://github.com/FantoX001/Atlas-MD">
-    <img src="https://visitor-badge.glitch.me/badge?page_id=https://github.com/FantoX001/Atlas-MD.visitor-badge&left_text=Total%20People%20Visited">
-  </a>
-  <br><br>
   
 <p align="center">
 <a href="https://github.com/FantoX001"><img title="Owner" src="https://img.shields.io/badge/Owner-Team Atlas-white.svg?style=for-the-badge&logo=github" width="170px"></a>
@@ -53,7 +51,7 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
  
 <br><br>   
     
-<h4 align="center"> Deploy on Repl.it - ( YouTube Tutorial Included & Highly Recommended )
+<h4 align="center"> Deploy on Repl.it
 </h4>
 
 <p align="center" >
@@ -73,7 +71,7 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
       
       
       
-<h4 align="center"> Deploy on Railway - ( YouTube Tutorial Included )
+<h4 align="center"> Deploy on Railway 
 </h4>
   
 <p align="center">
@@ -93,7 +91,7 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
 
 <br>
       
-<h4 align="center"> Deploy on Koyeb - ( YouTube Tutorial Included )
+<h4 align="center"> Deploy on Koyeb
 </h4>
       
 <p align="center">
@@ -115,7 +113,7 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
 
 <br>
  
-<h4 align="center"> Deploy on Heroku ( Issue Fixed ! )
+<h4 align="center"> Deploy on Heroku
 </h4>
 
 </p>
@@ -137,7 +135,7 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
 <br>
 
 
-<h4 align="center"> Deploy on Mogenius - ( Must have a Business/Educational email )
+<h4 align="center"> Deploy on Mogenius
 </h4>
   
 <p align="center">
@@ -155,7 +153,7 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
 
 <br>
 
-<h4 align="center"> Deploy on Uffizzi - ( Must have a Business/Educational email )
+<h4 align="center"> Deploy on Uffizzi
 </h4>
   
 <p align="center">
@@ -174,7 +172,7 @@ Konnichiwa Senpai, I am "Atlas" an Opensource WhatsApp bot made by <a href="http
 
 <br>
 
-<h4 align="center"> Deploy on BoxMineWorld - ( Hard to get free server due to load )
+<h4 align="center"> Deploy on BoxMineWorld
 </h4>
   
 <p align="center">
@@ -425,6 +423,86 @@ npm start
 #### ⚜️ Note as UserLand is a physical server so you must keep on your internet connection active to make sure bot works. Otherwise bot will be down.
 <br><br>
 
+</details> 
+    
+<br>
+    
+# 🔖 Install plugins
+     
+<details close>
+<summary>Open Plug-in Store</summary>
+    
+## 🪟 Audio Edit plug-in
+**〽️ Description:** This plugin conatains 8 audio modification commands using "**ffmpeg**" <br><br>
+**🧲️ Plug-in installation url:** 
+```
+https://gist.githubusercontent.com/FantoX001/b818960e024c541e155f948db34a2da2/raw/f6771fbd4c615a64eafb92d53e7627276f20167a/audio-edit.js
+```
+💡 [Plug-in Source Code ↗](https://gist.github.com/FantoX001/b818960e024c541e155f948db34a2da2)
+<br><br>
+
+## 🪟 Image Edit plug-in
+**〽️ Description:** This plugin conatains 4 image manipulation commands.<br><br>
+**🧲️ Plug-in installation url:** 
+```
+https://gist.githubusercontent.com/FantoX001/b48fd5040b2cd83e5e331c0d2c974871/raw/909c5a6a32cfcb2dbb965f1ee2a5e3025802de5b/image-edit.js
+```
+💡 [Plug-in Source Code ↗](https://gist.github.com/FantoX001/b48fd5040b2cd83e5e331c0d2c974871)
+<br><br>
+    
+## 🪟 Text to Speech plug-in
+**〽️ Description:** This plugin conatains text-to-speech functionality with 7 languages using "**google text to speech engine**" <br><br>
+**🧲️ Plug-in installation url:** 
+```
+https://gist.githubusercontent.com/FantoX001/109e3f04e70ca2edeb8d47072bbd0499/raw/84de4d44994fcb8b9f315a2be41eac062378df01/text-to-speech.js
+```
+💡 [Plug-in Source Code ↗](https://gist.github.com/FantoX001/109e3f04e70ca2edeb8d47072bbd0499)
+<br><br>
+    
+## 🪟 Logo Maker plug-in
+**〽️ Description:** This plugin conatains 40 logo maker commands. <br><br>
+**🧲️ Plug-in installation url:** 
+```
+https://gist.githubusercontent.com/FantoX001/b8e4a9782623c6197c10f68aa798a548/raw/7466871764434cf4c2ee30b15aac871e5db48a74/logo-maker.js
+```
+💡 [Plug-in Source Code ↗](https://gist.github.com/FantoX001/b8e4a9782623c6197c10f68aa798a548)
+<br><br>
+    
+## 🪟 Chat GPT plug-in
+**〽️ Description:** This plugin conatains 2 main Open AI tools which are "**ChatGPT**" and "**Dall-E**" <br><br>
+**🧲️ Plug-in installation url:** 
+```
+https://gist.githubusercontent.com/FantoX001/ec3e327c9711b1d3059cc26b8b7945be/raw/9396030969cbf0f24ad1c318a9035540ce4577b2/chat-GPT.js
+```
+💡 [Plug-in Source Code ↗](https://gist.github.com/FantoX001/ec3e327c9711b1d3059cc26b8b7945be)
+<br><br>
+    
+## 🪟 Fun Commands plug-in
+**〽️ Description:** This plugin conatains 17 funny commands. <br><br>
+**🧲️ Plug-in installation url:** 
+```
+https://gist.githubusercontent.com/FantoX001/e4df3eb3cc06baaccce3130a29262b30/raw/4c9b280fe527891f4d935b36b1c06e7f2fda9f6f/fun.js
+```
+💡 [Plug-in Source Code ↗](https://gist.github.com/FantoX001/e4df3eb3cc06baaccce3130a29262b30)
+<br><br>
+    
+## 🪟 Tiktok Downloader plug-in
+**〽️ Description:** This plugin conatains 4 tiktok video downloader commands. <br><br>
+**🧲️ Plug-in installation url:** 
+```
+https://gist.githubusercontent.com/FantoX001/481b039ef502a56339374b29b7491695/raw/854ed660349cc3fd45de89ce137721c674a03ec3/tiktokdl.js
+```
+💡 [Plug-in Source Code ↗](https://gist.github.com/FantoX001/481b039ef502a56339374b29b7491695)
+<br><br>
+    
+## 🪟 Anime NSFW Image plug-in
+**〽️ Description:** This plugin conatains 100 anime NSFW image commands using my own API<br><br>
+**🧲️ Plug-in installation url:** 
+```
+https://gist.githubusercontent.com/FantoX001/804c106f1f2fb1ae46e9bd63f854069d/raw/a93191b83c0cca44abb7e0e26b55caf2892f0bb4/nsfw-image.js
+```
+<br><br>
+
 
 </details> 
 
@@ -457,8 +535,8 @@ npm start
 
 <br>
 
-- [Baileys Library](https://github.com/adiwajshing/Baileys)
-- [Scrappy API (For Instagram, Lyrics and ❌videos scraping )](https://github.com/FantoX001/Scrappy-API)
+- [WhiskeySockets Baileys V-6.1.0](https://github.com/WhiskeySockets/Baileys)
+- [Scrappy API (For Instagram, Facebook, Lyrics and ❌videos scraping )](https://github.com/FantoX001/Scrappy-API)
 - [FantoX APIs ( For NSFW )](https://fantox-api.vercel.app/)
 
 <br>
@@ -487,7 +565,7 @@ npm start
 </details>    
     
 <br>
-
+     
 
 # 〽️ Why Should You Use Atlas as your Base:
 
@@ -519,7 +597,8 @@ npm start
 # 🧣 Contributors:
 
 - Check [Atlas Contributors](https://github.com/FantoX001/Atlas-MD/graphs/contributors) list.
-- Feel free to contribute in this project. I will merge your respected contribution after reviewing it.
+- Feel free to contribute in this project it increase it's stability and update. I will merge your respected contribution after reviewing it.
+- No personal modification / re-branding ( Changing bot name, owner name ) pull requests will be merged !
     
 <br><br>
 
@@ -536,7 +615,7 @@ npm start
 # 📛 Legal Disclaimer
 
 - We suggest you to use your `Own MongoDB URL` while deploying inside `.env` or `Environment Variables`. That will increase your Privacy and Security.
-- We don't recommend to change the `Economy database` we have added inside script. `If you do so, you will be responsible for any issues and we will not provide any support`.
+- We don't recommend to hardly modify the script. `If you do so, you will be responsible for any issues / bugs and we will not provide any support` as we are also busy in our life.
 - We will not be responsible for any issues caused by any individual hosting this bot and cause any harm to any Group `(So don't make someone Group Admin who you don't know just because they are hosting the Bot)`.
 
 <br><br>
@@ -550,4 +629,4 @@ npm start
 [![Fantox](https://github.com/FantoX001.png)](https://github.com/FantoX001)  | [![Ahmii-kun](https://github.com/Ahmii-kun.png)](https://github.com/Ahmii-kun) | [![Pratyush](https://github.com/pratyush4932.png)](https://github.com/pratyush4932) | [![Devime](https://github.com/Devime69.png)](https://github.com/Devime69) | [![Kai](https://github.com/Kai0071.png)](https://github.com/Kai0071) | [![JayJay Ops](https://github.com/jayjay-ops.png)](https://github.com/jayjay-ops)
 ----|----|----|----|----|----
 [FantoX](https://github.com/FantoX001)  | [Ahmii Kun](https://github.com/Ahmii-kun) | [Pratyush](https://github.com/pratyush4932) | [Devime](https://github.com/Devime69) | [Kai](https://github.com/Kai0071) | [Jayjay Ops](https://github.com/jayjay-ops)
-Owner, Main Developer, Maintainer, Dubugger  | Co-Developer, Co-Maintainer | Support Developer, Modules | Designing, API Maintainer | Ideas, Testing, Re-Checking | Ideas, Testing, Re-Checking
+Owner, Main Developer, Maintainer, Dubugger  | Co-Developer, Co-Maintainer | Support Developer | API Maintainer | Ideas, Testing | Ideas, Testing
