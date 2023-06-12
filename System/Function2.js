@@ -1,4 +1,4 @@
-const { proto, delay, getContentType } = require('@adiwajshing/baileys')
+const { proto, delay, getContentType } = require('baileys')
 const chalk = require('chalk')
 const fs = require('fs')
 const {unlink } = require ('fs').promises
