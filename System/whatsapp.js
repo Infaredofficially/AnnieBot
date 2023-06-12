@@ -8,7 +8,7 @@ const {
   delay,
   downloadContentFromMessage,
   getBinaryNodeChild,
-} = require("@adiwajshing/baileys");
+} = require("baileys");
 const fs = require("fs");
 const FileType = require("file-type");
 const { getRandom, fetchBuffer } = require("./Function");
