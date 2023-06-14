@@ -61,6 +61,7 @@
     "openai": "^3.2.1",
     "path": "^0.12.7",
     "pdfkit": "^0.13.0",
+    "forever": "^4.0.3",
     "pino": "^8.11.0",
     "qrcode": "^1.5.1",
     "qrcode-terminal": "^0.12.0",
