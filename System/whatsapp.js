@@ -8,7 +8,7 @@ const {
   delay,
   downloadContentFromMessage,
   getBinaryNodeChild,
-} = require("baileys");
+} = require("../BaileysJS/lib");
 const fs = require("fs");
 const FileType = require("file-type");
 const { getRandom, fetchBuffer } = require("./Function");
@@ -146,9 +146,9 @@ exports.serialize = (Atlas, m, options = {}) => {
         ...(m.quoted.isGroup ? { participant: m.quoted.sender } : {}),
       }));
       m.quoted.delete = () =>
-      Atlas.sendMessage(m.quoted.from, { delete: vM.key });
+        Atlas.sendMessage(m.quoted.from, { delete: vM.key });
       m.quoted.download = (pathFile) =>
-      Atlas.downloadMediaMessage(m.quoted.msg, pathFile);
+        Atlas.downloadMediaMessage(m.quoted.msg, pathFile);
     }
   }
   m.download = (pathFile) => Atlas.downloadMediaMessage(m.msg, pathFile);

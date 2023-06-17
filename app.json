@@ -20,7 +20,7 @@
   "success_url": "/",
   "env": {
     "PREFIX": {
-      "description": "Prefix of your bot Ex: - , / , # , & etc. Put anythong except @ (Default is -)",
+      "description": "Prefix of your bot Ex: . , / , # , & etc. Put anythong except @ (Default is -)",
       "required": false
     },
     "SESSION_ID": {
@@ -32,10 +32,18 @@
     },
     "TENOR_API_KEY": {
       "description": "A key used for gif searches. If you don't have any keet it default: AIzaSyCyouca1_KKy4W_MG1xsPzuku5oa8W358c",
-        "required": false
+      "required": false
+    },
+    "PACKNAME": {
+      "description": "Put a sticker packname here. Default is: Atlas Bot",
+      "required": false
     },
     "MONGODB": {
-      "description": "Put Your MongoDB URL. We will not provide any public MongoDB URL because of stability. You can create MongoDB Atlas URL for free."
+      "description": "Put Your MongoDB URL. You can create MongoDB Atlas URL for free."
+    },
+    "OPENAI_API": {
+      "description": "Put your OpenAI API key here if you want to use ChatGPT and DALL-E.",
+      "required": false
     }
   },
   "buildpacks": [

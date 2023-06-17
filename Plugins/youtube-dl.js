@@ -80,7 +80,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
                   audio: fs.readFileSync(outputPath),
                   mimetype: "audio/mpeg",
                   ptt: true,
-                  contextInfo: {
+                  /*contextInfo: {
                     externalAdReply: {
                       title: song.title.substr(0, 50),
                       body: `Downloaded by: ${botName}`,
@@ -89,7 +89,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
                       mediaUrl: thumbAtlas,
                       sourceUrl: song.url,
                     },
-                  },
+                  },*/
                 },
                 { quoted: m }
               );
@@ -158,7 +158,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
                   audio: fs.readFileSync(outputPath),
                   mimetype: "audio/mpeg",
                   ptt: true,
-                  contextInfo: {
+                  /*contextInfo: {
                     externalAdReply: {
                       title: song.title.substr(0, 50),
                       body: `Downloaded by: ${botName}`,
@@ -167,7 +167,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
                       mediaUrl: thumbAtlas,
                       sourceUrl: song.url,
                     },
-                  },
+                  },*/
                 },
                 { quoted: m }
               );
