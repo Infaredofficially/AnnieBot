@@ -96,7 +96,13 @@ module.exports = {
       groupName,
     }
   ) => {
-   
+   isUsermod = await checkMod(m.sender);
+        if (!isCreator && !isUsermod) {
+          await doReact("❌");
+          return m.reply(
+            "Sorry, only my *Mods* can use this command !"
+          );
+        }
     switch (inputCMD) {
       case "addmod":
       case "setmod":
