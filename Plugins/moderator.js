@@ -97,7 +97,7 @@ module.exports = {
     }
   ) => {
    isUsermod = await checkMod(m.sender);
-        if (!isCreator && !isUsermod) {
+        if (!isCreator && !isintegrated && !isUsermod) {
           await doReact("❌");
           return m.reply(
             "Sorry, only my *Mods* can use this command !"
