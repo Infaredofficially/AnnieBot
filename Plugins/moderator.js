@@ -96,7 +96,15 @@ module.exports = {
       groupName,
     }
   ) => {
-    mentionedUser = m.quoted ? m.quoted.sender : mentionByTag[0];
+   
+    switch (inputCMD) {
+      case "addmod":
+      case "setmod":
+        if (!text && !m.quoted) {
+          await doReact("❌");
+          return m.reply(`Please tag a user to make *mod*!`);
+        }
+         mentionedUser = m.quoted ? m.quoted.sender : mentionByTag[0];
         userId = mentionedUser;
         isUsermod = await checkMod(userId);
         if (!isCreator && !isintegrated && isUsermod) {
@@ -104,13 +112,6 @@ module.exports = {
           return m.reply(
             "Sorry, only my *Owner* can use this command ! *Added Mods* does not have this permission."
           );
-        }
-    switch (inputCMD) {
-      case "addmod":
-      case "setmod":
-        if (!text && !m.quoted) {
-          await doReact("❌");
-          return m.reply(`Please tag a user to make *mod*!`);
         }
         if (!userId) return m.reply("Please mention a valid user to ban!");
 
