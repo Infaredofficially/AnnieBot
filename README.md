@@ -76,7 +76,7 @@ Konnichiwa Onii-Chan, I am "Annie" an Opensource WhatsApp bot made by <a href="h
 </h4>
   
 <p align="center">
-    <a href="https://railway.app/new/template/Gts2Zx?referralCode=f3gg2m">
+    <a href="https://railway.app/template/ORnWEz?referralCode=DwGFO5">
     <img src="https://railway.app/button.svg" alt="Deploy on Railway" width="170px">
     </a>
     <br>
