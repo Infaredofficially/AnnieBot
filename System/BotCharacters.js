@@ -51,6 +51,7 @@
 17 --- Yor
 18 --- Shinbou
 19 --- Eiko
+20 --- Annie
 
 Image Source: https://wall.alphacoders.com/
 Image Source: https://wallpapercave.com/
@@ -288,4 +289,15 @@ global.charID19 = {
   botImage4 : "https://images6.alphacoders.com/126/1260043.png",
   botImage5 : "https://images6.alphacoders.com/124/1247977.jpg",
   botImage6 : "https://images2.alphacoders.com/125/1251795.jpg",
+}
+
+global.charID20 = {
+  botName : "Annie",
+  botVideo : "https://graph.org/file/e3b2ee218b98b8679bf98.mp4",
+  botImage1 : "https://wallpapercave.com/wp/wp4320232.png",
+  botImage2 : "https://wallpapercave.com/wp/wp4320234.jpg",
+  botImage3 : "https://wallpapercave.com/wp/wp4320239.jpg",
+  botImage4 : "https://wallpapercave.com/wp/wp4320250.jpg",
+  botImage5 : "https://wallpapercave.com/wp/wp4320254.jpg",
+  botImage6 : "https://wallpapercave.com/wp/wp4320260.jpg",
 }

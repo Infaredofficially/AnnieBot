@@ -379,10 +379,10 @@ module.exports = {
             ? m.quoted.msg
             : args[0]
             ? args.join(" ")
-            : "『 *Attention Everybody* 』";
+            : "『 *Attention Niggas* 』";
         } else {
           message2 =
-            "『 *Attention Everybody* 』\n\n*🎀 Message:* Check this Out !";
+            "『 *Attention Niggas* 』\n\n*🎀 Message:* Check this Out !";
         }
 
         await doReact("🎌");
@@ -400,7 +400,7 @@ module.exports = {
         }
         await doReact("👋");
         await Atlas.sendMessage(m.from, {
-          image: { url: "https://wallpapercave.com/wp/wp9667218.png" },
+          image: { url: "https://wallpapercave.com/wp/wp4320278.jpg" },
           caption: `I'm Leaving this group on request... \n\nTake care everyone :)`,
           mentions: participants.map((a) => a.id),
           quoted: m,
