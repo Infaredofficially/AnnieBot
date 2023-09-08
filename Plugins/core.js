@@ -31,7 +31,7 @@ module.exports = {
       case "sc":
         await doReact("🧣");
         let repoInfo = await axios.get(
-          "https://api.github.com/repos/FantoX/Atlas-MD"
+          "https://api.github.com/repos/infaredofficially/Anniebot"
         );
         let repo = repoInfo.data;
         console.log(repo);
@@ -50,7 +50,7 @@ module.exports = {
       case "support":
       case "supportgc":
         await doReact("🔰");
-        let txt2 = `              🧣 *Support Group* 🧣\n\n*${botName}* is an open source project, and we are always happy to help you.\n\n*Link:* ${suppL}\n\n*Note:* Please don't spam in the group, and don't message *Admins directly* without permission. Ask for help inside *Group*.\n\n*Thanks for using Atlas.*`;
+        let txt2 = `              🧣 *Support Group* 🧣\n\n*${botName}* is an open source project, and we are always happy to help you.\n\n*Link:* ${suppL}\n\n*Note:* Please don't spam in the group, and don't message *Admins directly* without permission. Ask for help inside *Group*.\n\n*Thanks for using Annie.*`;
         Atlas.sendMessage(m.from, { image: pic, caption: txt2 }, { quoted: m });
         break;
 
