@@ -1,6 +1,3 @@
-const fs = require("fs");
-const Jimp = require("jimp");
-const moment = require("moment-timezone");
 const {
   banUser, //----------------------- BAN
   checkBan, // --------------------- CHECK BAN STATUS
@@ -20,11 +17,7 @@ const {
   unbanGroup, // ------------------- UNBAN GROUP
 } = require("../System/MongoDB/MongoDb_Core");
 
-const {
-  userData,
-  groupData,
-  systemData,
-} = require("../System/MongoDB/MongoDB_Schema.js");
+const { userData } = require("../System/MongoDB/MongoDB_Schema.js");
 
 let mergedCommands = [
   "addmod",
@@ -96,13 +89,11 @@ module.exports = {
       groupName,
     }
   ) => {
-   isUsermod = await checkMod(m.sender);
-        if (!isCreator && !isintegrated && !isUsermod) {
-          await doReact("❌");
-          return m.reply(
-            "Sorry, only my *Mods* can use this command !"
-          );
-        }
+    isUsermod = await checkMod(m.sender);
+    if (!isCreator && !isintegrated && !isUsermod) {
+      await doReact("❌");
+      return m.reply("Sorry, only my *Mods* can use this command !");
+    }
     switch (inputCMD) {
       case "addmod":
       case "setmod":
@@ -110,7 +101,7 @@ module.exports = {
           await doReact("❌");
           return m.reply(`Please tag a user to make *mod*!`);
         }
-         mentionedUser = m.quoted ? m.quoted.sender : mentionByTag[0];
+        mentionedUser = m.quoted ? m.quoted.sender : mentionByTag[0];
         userId = mentionedUser;
         isUsermod = await checkMod(userId);
         if (!isCreator && !isintegrated && isUsermod) {
@@ -421,7 +412,6 @@ module.exports = {
           "Yor",
           "Shinbou",
           "Eiko",
-          "Annie",
         ];
         const botLogos = [
           "https://wallpapercave.com/wp/wp5924545.jpg",
@@ -444,7 +434,6 @@ module.exports = {
           "https://images7.alphacoders.com/123/1236729.jpg",
           "https://wallpapercave.com/wp/wp4650481.jpg",
           "https://images8.alphacoders.com/122/1229829.jpg",
-          "https://wallpapercave.com/wp/wp4320234.jpg",
         ];
 
         checkChar = await getChar();
