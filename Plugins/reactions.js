@@ -92,7 +92,7 @@ module.exports = {
       smug: "smugged at",
       wave: "waved at",
       wink: "Winked at",
-      yeet: "Yeeted at",
+      yeet: "Yeeted",
     };
     await doReact("🎭");
 
@@ -125,7 +125,7 @@ module.exports = {
     while (users.length < 1) users.push(m.sender);
     const reactant = users[0];
     const single = reactant === m.sender;
-    const { url } = await fetchJson(`https://api.waifu.pics/nsfw/${reaction}`);
+    const { url } = await fetchJson(`https://api.waifu.pics/sfw/${reaction}`);
     const result = await getBuffer(url);
     const buffer = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"));
     await Atlas.sendMessage(
