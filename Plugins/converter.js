@@ -5,6 +5,7 @@ const { exec } = require("child_process");
 const fs = require("fs");
 const PDFDocument = require("pdfkit");
 let { GraphOrg } = require("../System/Uploader");
+const { getBuffer } = require("../System/Function2.js");
 
 const util = require("util");
 let mergedCommands = [
@@ -17,6 +18,7 @@ let mergedCommands = [
   "tourl",
   "topdf",
   "imgtopdf",
+  "toqr",
 ];
 
 module.exports = {
@@ -31,6 +33,7 @@ module.exports = {
     "tourl",
     "topdf",
     "imgtopdf",
+    "toqr",
   ],
   description: "All converter related commands",
   start: async (
@@ -281,6 +284,23 @@ module.exports = {
           await doReact("❔");
           return m.reply(`Please reply to an *Image* to convert it to PDF!`);
         }
+        break;
+      case "toqr":
+        if (!text) {
+          await doReact("❔");
+          return m.reply(
+            `Please provide an URL to convert into QR code!\n\nExample: *${prefix}toqr https://github.com/infaredofficially*`
+          );
+        }
+
+        const res = await getBuffer(
+          `https://www.qrtag.net/api/qr_8.png?url=${text}`
+        );
+        await Atlas.sendMessage(
+          m.from,
+          { image: res, caption: `\n*Source:* ${text}` },
+          { quoted: m }
+        );
         break;
 
       default:
