@@ -94,10 +94,10 @@ module.exports = {
       case "admins":
       case "admin":
         if (!isMedia) {
-          message = m.quoted ? m.quoted.msg : "『 *Attention Admins* 』";
+          message = m.quoted ? m.quoted.msg : "『 *Yo Admins* 』";
         } else {
           message =
-            "『 *Attention Admins* 』\n\n*🎀 Message:* Check this Out !";
+            "『 *Yo Admins* 』\n\n*🎀 Message:* Wetin be this !";
         }
         await doReact("🏅");
         Atlas.sendMessage(
@@ -110,11 +110,11 @@ module.exports = {
       case "setgcname":
         if (!isAdmin) {
           await doReact("❌");
-          return m.reply(`*You* must be *Admin* in order to use this Command!`);
+          return m.reply(`*You* must be an *Admin* to use this sha!`);
         }
         if (!isBotAdmin) {
           await doReact("❌");
-          return m.reply(`*Bot* must be *Admin* in order to use this Command!`);
+          return m.reply(`*Annie* must be an *Admin* in order to use this jare!`);
         }
         if (!text) {
           await doReact("❔");
@@ -150,7 +150,7 @@ module.exports = {
       case "del":
         if (!isAdmin) {
           await doReact("❌");
-          return m.reply(`*You* must be *Admin* in order to use this Command!`);
+          return m.reply(`*You* must be an *Admin* to delete, my guy!`);
         }
         if (!m.quoted) {
           await doReact("❔");
@@ -160,7 +160,7 @@ module.exports = {
           if (!m.quoted.sender.includes(botNumber)) {
             await doReact("❌");
             return m.reply(
-              `Sorry, Without *Admin* permission, I can only delete my own messages !`
+              `No vex, Without *Admin* permission, I can only delete my own messages !`
             );
           }
           key = {
@@ -174,7 +174,7 @@ module.exports = {
           if (!isAdmin) {
             await doReact("❌");
             return m.reply(
-              `Sorry, only *Admins* can delete other's messages !`
+              `why na, only *Admins* can delete other's messages !`
             );
           }
           key = {
@@ -192,30 +192,30 @@ module.exports = {
       case "demote":
         if (!isAdmin) {
           await doReact("❌");
-          return m.reply(`*You* must be *Admin* in order to use this Command!`);
+          return m.reply(`*You* must be an *Admin* to use this Command!`);
         }
         if (!isBotAdmin) {
           await doReact("❌");
-          return m.reply(`*Bot* must be *Admin* in order to use this Command!`);
+          return m.reply(`*Annie* must be an *Admin* in order to use this Command!`);
         }
         if (quotedsender.includes(m.sender)) {
           await doReact("❌");
-          return m.reply(`You can't demote yourself !`);
+          return m.reply(`You can't demote yourself, Dey play !`);
         }
         if (quotedsender.includes(botNumber)) {
           await doReact("❌");
-          return m.reply(`Sorry, I can't demote myself !`);
+          return m.reply(`Sorry, I can't demote myself, lol !`);
         }
 
         if (!text && !m.quoted) {
           await doReact("❔");
-          return m.reply(`Please tag an user to *Demote*!`);
+          return m.reply(`Please tag a user to *Demote*!`);
         } else if (m.quoted) {
           mentionedUser = m.quoted.sender;
         } else {
           mentionedUser = mentionByTag[0];
         }
-
+plpl
         userId = (await mentionedUser) || m.msg.contextInfo.participant;
         if (!groupAdmin.includes(userId)) {
           return Atlas.sendMessage(
@@ -223,7 +223,7 @@ module.exports = {
             {
               text: `@${
                 mentionedUser.split("@")[0]
-              } Senpai is not an *Admin* of this group!`,
+              } Sama is not an *Admin* of this group!`,
               mentions: [mentionedUser],
             },
             { quoted: m }
@@ -238,7 +238,7 @@ module.exports = {
                 {
                   text: `Sorry @${
                     mentionedUser.split("@")[0]
-                  } Senpai, you have been *Demoted* by @${
+                  } Sama, you have been *Demoted* by @${
                     messageSender.split("@")[0]
                   } !`,
                   mentions: [mentionedUser, messageSender],
@@ -266,7 +266,7 @@ module.exports = {
       case "grouplink":
         if (!isBotAdmin) {
           await doReact("❌");
-          return m.reply(`*Bot* must be *Admin* in order to use this Command!`);
+          return m.reply(`*Me gangan* must be made *Admin* to use this command!`);
         }
         await doReact("🧩");
         let link = await Atlas.groupInviteCode(m.from);
@@ -401,7 +401,7 @@ module.exports = {
         await doReact("👋");
         await Atlas.sendMessage(m.from, {
           image: { url: "https://wallpapercave.com/wp/wp4320278.jpg" },
-          caption: `I'm Leaving this group on request... \n\nTake care everyone :)`,
+          caption: `I'm Leaving this group on request... \n\nMake una byebye :)`,
           mentions: participants.map((a) => a.id),
           quoted: m,
         }).then(async () => {
@@ -449,7 +449,7 @@ module.exports = {
             {
               text: `@${
                 mentionedUser.split("@")[0]
-              } Senpai is already an *Admin* of this group!`,
+              } Sama is already an *Admin* of this group!`,
               mentions: [mentionedUser],
             },
             { quoted: m }
@@ -464,7 +464,7 @@ module.exports = {
                 {
                   text: `Congratulations  @${
                     mentionedUser.split("@")[0]
-                  } Senpai 🥳, you have been *Promoted* by @${
+                  } Sama 🥳, you have been *Promoted* by @${
                     messageSender.split("@")[0]
                   } !`,
                   mentions: [mentionedUser, messageSender],
