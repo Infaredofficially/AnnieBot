@@ -23,7 +23,7 @@ module.exports = {
         if (!chechSenderModStatus && !isCreator && !isintegrated) {
           await doReact("❌");
           return Atlas.sendMessage(m.from, {
-            text: `Sorry, only *Owners* and *Mods* can use this command !`,
+            text: `Bruh, only *Owners* and *Mods* can use this command !`,
             quoted: m,
           });
         }
@@ -101,7 +101,7 @@ module.exports = {
         if (!chechSenderModStatus && !isCreator && !isintegrated) {
           await doReact("❌");
           return Atlas.sendMessage(m.from, {
-            text: `Sorry, only *Owners* and *Mods* can use this command !`,
+            text: `Nigga, only *Owners* and *Mods* can use this command !`,
             quoted: m,
           });
         }
