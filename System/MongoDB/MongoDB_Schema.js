@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const config = require("../../Configurations.js");
 const options = {
-  socketTimeoutMS: 30000, 
+  socketTimeoutMS: 30000,
 };
 
-const db1 = mongoose.createConnection(config.mongodb, options);
-const db2 = mongoose.createConnection(config.mongodb, options);
+// ----------------------- Atlas can work with upto 4 MongoDB databases at once to distribute DB load  -------------------- //
+
+const db1 = mongoose.createConnection(config.mongodb, options); // You malually put first mongodb url here
+const db2 = mongoose.createConnection(config.mongodb, options); // You malually put second mongodb url here
 
 const GroupSchema = new mongoose.Schema({
   id: { type: String, unique: true, required: true },
@@ -33,9 +35,9 @@ const CoreSchema = new mongoose.Schema({
 });
 
 const PluginSchema = new mongoose.Schema({
-    plugin: { type: String },
-    url: { type: String },
-  });
+  plugin: { type: String },
+  url: { type: String },
+});
 
 const userData = db1.model("UserData", UserSchema);
 const groupData = db1.model("GroupData", GroupSchema);
