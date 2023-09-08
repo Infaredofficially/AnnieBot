@@ -293,7 +293,7 @@ global.charID19 = {
 
 global.charID20 = {
   botName : "Annie",
-  botVideo : "https://graph.org/file/e3b2ee218b98b8679bf98.mp4",
+  botVideo : "https://graph.org/file/a28d2cb2ca1028ec4b17e.mp4",
   botImage1 : "https://wallpapercave.com/wp/wp4320232.png",
   botImage2 : "https://wallpapercave.com/wp/wp4320234.jpg",
   botImage3 : "https://wallpapercave.com/wp/wp4320239.jpg",
