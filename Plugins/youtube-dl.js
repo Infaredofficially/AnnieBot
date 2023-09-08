@@ -2,11 +2,7 @@ const YT = require("../System/Ytdl-Core.js");
 const fs = require("fs");
 const yts = require("youtube-yts");
 const ffmpeg = require("fluent-ffmpeg");
-const {
-  fetchJson,
-  getBuffer,
-  GIFBufferToVideoBuffer,
-} = require("../System/Function2.js");
+const { getBuffer } = require("../System/Function2.js");
 
 let mergedCommands = [
   "play",
@@ -69,9 +65,6 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
               console.error("Error converting to opus:", err);
             })
             .on("end", async () => {
-              //const thumbnailBuffer = await getBuffer(song.thumbnail);
-              const thumbnailBuffer = await getBuffer(thumbAtlas);
-
               await Atlas.sendPresenceUpdate("recording", m.from);
 
               Atlas.sendMessage(
@@ -80,16 +73,6 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
                   audio: fs.readFileSync(outputPath),
                   mimetype: "audio/mpeg",
                   ptt: true,
-                  /*contextInfo: {
-                    externalAdReply: {
-                      title: song.title.substr(0, 50),
-                      body: `Downloaded by: ${botName}`,
-                      thumbnail: thumbnailBuffer,
-                      mediaType: 1,
-                      mediaUrl: thumbAtlas,
-                      sourceUrl: song.url,
-                    },
-                  },*/
                 },
                 { quoted: m }
               );
@@ -155,19 +138,9 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
               Atlas.sendMessage(
                 m.from,
                 {
-                  audio: fs.readFileSync(outputPath),
+                  audio: fs.readFileSync(inputPath),
                   mimetype: "audio/mpeg",
                   ptt: true,
-                  /*contextInfo: {
-                    externalAdReply: {
-                      title: song.title.substr(0, 50),
-                      body: `Downloaded by: ${botName}`,
-                      thumbnail: thumbnailBuffer,
-                      mediaType: 1,
-                      mediaUrl: thumbAtlas,
-                      sourceUrl: song.url,
-                    },
-                  },*/
                 },
                 { quoted: m }
               );
